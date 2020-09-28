@@ -21,8 +21,9 @@ class Model {
     var searchedItems: SearchedItems?
     var playListItems: PlayListItems?
     
-    func getSearchList(keywords q: String) {
-        let url = "\(API_URL)search?part=snippet&order=viewCount&q=\(q)&type=video&key=\(API_KEY)"
+    func getSearchList(q: String, maxResults: Int) {
+        let url = "\(API_URL)search?part=snippet&maxResults=\(maxResults)&q=\(q)&type=video&key=\(API_KEY)"
+        //let url = "\(API_URL)search?part=snippet&maxResults=\(maxResults)&q=\(q)&key=\(API_KEY)"
         
         AF.request(url, method: .get).response { response in
             if response.error == nil {

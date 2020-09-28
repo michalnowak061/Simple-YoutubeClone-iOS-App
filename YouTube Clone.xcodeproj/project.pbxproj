@@ -22,6 +22,7 @@
 		9DDD3D2E2520C4F6006A1659 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D2D2520C4F6006A1659 /* SearchTVC.swift */; };
 		9DDD3D3225210797006A1659 /* SearchedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D3125210797006A1659 /* SearchedItems.swift */; };
 		9DF050B82521615800049586 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF050B72521615800049586 /* UISearchBar.swift */; };
+		9DF050BB2522055600049586 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF050BA2522055600049586 /* SearchResultVC.swift */; };
 		E78CD5CF4161EA5AA860FAA4 /* Pods_YouTube_Clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEF89AA6F4243AEB509867F /* Pods_YouTube_Clone.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		9DDD3D3125210797006A1659 /* SearchedItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedItems.swift; sourceTree = "<group>"; };
 		9DEF89AA6F4243AEB509867F /* Pods_YouTube_Clone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YouTube_Clone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF050B72521615800049586 /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
+		9DF050BA2522055600049586 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				9D3E0CA1251FDB7D00CF4F23 /* Cells */,
 				9DDD3D26251FF1B1006A1659 /* MainVC.swift */,
 				9DDD3D2A2520C071006A1659 /* SearchVC.swift */,
+				9DF050BA2522055600049586 /* SearchResultVC.swift */,
 				9D3E0C7A251F729000CF4F23 /* PlayListItemsVC.swift */,
 			);
 			path = "View Controllers";
@@ -294,6 +297,7 @@
 				9DBD4113252159FC00E4715A /* UIViewController.swift in Sources */,
 				9D3E0C91251F736A00CF4F23 /* PlayListItems.swift in Sources */,
 				9DF050B82521615800049586 /* UISearchBar.swift in Sources */,
+				9DF050BB2522055600049586 /* SearchResultVC.swift in Sources */,
 				9D3E0CA4251FDBC100CF4F23 /* PlayListItemCVC.swift in Sources */,
 				9DDD3D3225210797006A1659 /* SearchedItems.swift in Sources */,
 				9D3E0C77251F729000CF4F23 /* AppDelegate.swift in Sources */,
