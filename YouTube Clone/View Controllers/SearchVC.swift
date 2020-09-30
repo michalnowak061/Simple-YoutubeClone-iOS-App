@@ -9,14 +9,16 @@ import UIKit
 
 // MARK: - SearchVC
 class SearchVC: UIViewController {
-    var model = Model()
     var state: SearchVCState = .archived
-    var archivedItems: [String] = []
-    var searchedItems: SearchedItems?
+    var model = Model()
+    var search: Search? = nil
+    var archivedSearch: [String] = []
     
     enum SearchVCState {
         case archived
         case searching
+        case searchingCompleted
+        case selected
     }
     
     override func viewDidLoad() {
@@ -26,6 +28,7 @@ class SearchVC: UIViewController {
     
     // MARK: - private methods
     private func viewSetup() {
+        self.loadArchivedSearch()
         self.model.delegate = self
         
         self.searchBar.delegate = self
@@ -39,6 +42,20 @@ class SearchVC: UIViewController {
     
     private func viewUpdate() {
         self.tableView.reloadData()
+        self.saveArchivedSearch()
+        print("Status: \(self.state)")
+    }
+    
+    private func saveArchivedSearch() {
+        let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let path = documentsDirectoryPathString + "/archivedSearch"
+        self.archivedSearch.saveToFile(path: path)
+    }
+    
+    private func loadArchivedSearch() {
+        let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let path = documentsDirectoryPathString + "/archivedSearch"
+        self.archivedSearch.loadFromFile(path: path)
     }
     
     // MARK: - @IBOutlets
@@ -52,17 +69,20 @@ class SearchVC: UIViewController {
     
     @IBAction func clearButtonPressed(_ sender: UIButton) {
         searchBar.text = ""
-        self.searchedItems = nil
+        self.search = nil
         self.state = .archived
         self.viewUpdate()
     }
-    
 }
 // MARK: - SearchVC extensions
 extension SearchVC: ModelDelegate {
-    func searchedItemsFetched(_ searchedItems: SearchedItems) {
-        self.searchedItems = searchedItems
+    func getThumbnailsCompleted(_ thumbnails: [UIImage]) {}
+    func getSearchCompleted(_ searchedItems: Search) {
+        self.search = searchedItems
         viewUpdate()
+        if self.state == .searchingCompleted || self.state == .selected || self.state == .archived {
+            presentSearchResultVC(barTitle: self.searchBar.text ?? "", model: self.model)
+        }
     }
     func playListItemsFetched(_ playListItems: PlayListItems) {}
 }
@@ -85,80 +105,82 @@ extension SearchVC: UISearchBarDelegate {
             break
         case .searching:
             let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
-            self.model.getSearchList(q: keyWords, maxResults: 15)
+            self.model.getSearch(q: keyWords, maxResults: 15)
+            break
+        case .searchingCompleted:
+            break
+        case .selected:
             break
         }
         self.viewUpdate()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let item = self.searchBar.text, !item.isEmpty, !self.archivedItems.contains(item) {
-            self.archivedItems.append(item)
-            
-            presentSearchResultVC()
+        if let item = self.searchBar.text, !item.isEmpty {
+            if !self.archivedSearch.contains(item) {
+                self.archivedSearch.append(item)
+            }
+            if self.search != nil {
+                self.state = .searchingCompleted
+                let keyWords: String = searchBar.text?.replacingOccurrences(of: " ", with: "+") ?? ""
+                self.model.getSearch(q: keyWords, maxResults: 15, type: "video")
+            }
         }
     }
 }
+
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch self.state {
-        case .archived:
-            return self.archivedItems.count
-        case .searching:
-            return self.searchedItems?.items.count ?? 0
+        if self.state == .archived {
+            return self.archivedSearch.count
+        } else {
+            return self.search?.items.count ?? 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch self.state {
-        case .archived:
-            var reversedItems = self.archivedItems
+        if self.state == .archived {
+            var reversedItems = self.archivedSearch
             reversedItems.reverse()
             let title = reversedItems[indexPath.row]
             let cell = self.tableView.dequeueReusableCell(withIdentifier: SearchTVC().identifier, for: indexPath) as! SearchTVC
-            cell.setItem(withTitle: title)
+            cell.setArchivedSearch(withTitle: title)
             return cell
-        case .searching:
-            let title = self.searchedItems?.items[indexPath.row].snippet.title
+        } else {
+            let title = self.search?.items[indexPath.row].snippet.title
             let cell = self.tableView.dequeueReusableCell(withIdentifier: SearchTVC().identifier, for: indexPath) as! SearchTVC
-            cell.setItem(withTitle: title ?? "")
+            cell.setSearch(withTitle: title ?? "")
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch self.state {
-        case .archived:
-            let title = self.archivedItems[indexPath.row]
-            self.searchBar.text = title
-            break
-        case .searching:
-            let title = self.searchedItems?.items[indexPath.row].snippet.title
-            self.searchBar.text = title
-            if !self.archivedItems.contains(title!) {
-                self.archivedItems.append(title!)
-            }
-            break
+        let selectedCell = self.tableView.cellForRow(at: indexPath) as! SearchTVC
+        if let searchText = selectedCell.titleLabel.text {
+            self.state = .selected
+            self.searchBar.text = searchText
+            let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
+            self.model.getSearch(q: keyWords, maxResults: 15, type: "video")
         }
-        presentSearchResultVC()
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var deleteAction: UIContextualAction {
             let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
-                self.archivedItems.remove(at: indexPath.row)
+                self.archivedSearch.reverse()
+                self.archivedSearch.remove(at: indexPath.row)
+                self.archivedSearch.reverse()
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.viewUpdate()
                 completion(true)
             }
             action.title = "Delete"
             action.backgroundColor = .red
             return action
         }
-        switch self.state {
-        case .archived:
+        if self.state == .archived {
             return UISwipeActionsConfiguration(actions: [deleteAction])
-        case .searching:
-            return nil
         }
+        return nil
     }
 }

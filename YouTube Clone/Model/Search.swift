@@ -8,17 +8,17 @@
 import Foundation
 
 // MARK: - SearchedItems
-struct SearchedItems: Codable {
+struct Search: Codable {
     let kind, etag, nextPageToken, regionCode: String
-    let pageInfo: SearchedItemsPageInfo
-    let items: [SearchedItemsItem]
+    let pageInfo: SearchPageInfo
+    let items: [SearchItem]
 }
 
 // MARK: - Item
-struct SearchedItemsItem: Codable {
+struct SearchItem: Codable {
     let kind, etag: String
     let id: ID
-    let snippet: SearchedItemsSnippet
+    let snippet: SearchSnippet
 }
 
 // MARK: - ID
@@ -34,10 +34,10 @@ struct ID: Codable {
 }
 
 // MARK: - Snippet
-struct SearchedItemsSnippet: Codable {
+struct SearchSnippet: Codable {
     let publishedAt: Date
     let channelID, title, snippetDescription: String
-    let thumbnails: SearchedItemsThumbnails
+    let thumbnails: SearchThumbnails
     let channelTitle, liveBroadcastContent: String
     let publishTime: Date
 
@@ -51,8 +51,8 @@ struct SearchedItemsSnippet: Codable {
 }
 
 // MARK: - Thumbnails
-struct SearchedItemsThumbnails: Codable {
-    let thumbnailsDefault, medium, high: SearchedItemsDefault
+struct SearchThumbnails: Codable {
+    let thumbnailsDefault, medium, high: SearchDefault
 
     enum CodingKeys: String, CodingKey {
         case thumbnailsDefault = "default"
@@ -61,12 +61,12 @@ struct SearchedItemsThumbnails: Codable {
 }
 
 // MARK: - SearchedItemsDefault
-struct SearchedItemsDefault: Codable {
+struct SearchDefault: Codable {
     let url: String
     let width, height: Int?
 }
 
 // MARK: - PageInfo
-struct SearchedItemsPageInfo: Codable {
+struct SearchPageInfo: Codable {
     let totalResults, resultsPerPage: Int
 }

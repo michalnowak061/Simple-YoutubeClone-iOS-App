@@ -5,11 +5,12 @@
 //  Created by Michał Nowak on 26/09/2020.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 
 protocol ModelDelegate {
-    func searchedItemsFetched(_ searchedItems: SearchedItems)
+    func getSearchCompleted(_ search: Search)
+    func getThumbnailsCompleted(_ thumbnails: [UIImage])
     func playListItemsFetched(_ playListItems: PlayListItems)
 }
 
@@ -18,12 +19,28 @@ class Model {
     let API_KEY = "AIzaSyC8renxi8A86PsIqgh8jtdCBA9EsdgFckU"
     
     var delegate: ModelDelegate?
-    var searchedItems: SearchedItems?
-    var playListItems: PlayListItems?
+    var thumbnails: [UIImage] = []
+    var search: Search? = nil
+    var playListItems: PlayListItems? = nil
     
-    func getSearchList(q: String, maxResults: Int) {
-        let url = "\(API_URL)search?part=snippet&maxResults=\(maxResults)&q=\(q)&type=video&key=\(API_KEY)"
-        //let url = "\(API_URL)search?part=snippet&maxResults=\(maxResults)&q=\(q)&key=\(API_KEY)"
+    func getThumbnails(urls: [String]) {
+        for url in urls {
+            AF.request(url).response { [self] response in
+                guard response.data != nil else {
+                    return
+                }
+                if let image = UIImage(data: response.data!, scale: 1) {
+                    thumbnails.append(image)
+                    if thumbnails.count == urls.count {
+                        self.delegate?.getThumbnailsCompleted(thumbnails)
+                    }
+                }
+            }
+        }
+    }
+    
+    func getSearch(q: String, maxResults: Int, type: String = "channel+playlist+video") {
+        let url = "\(API_URL)search?part=snippet&maxResults=\(maxResults)&q=\(q)&type=\(type)&key=\(API_KEY)"
         
         AF.request(url, method: .get).response { response in
             if response.error == nil {
@@ -31,8 +48,8 @@ class Model {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .iso8601
                     do {
-                        self.searchedItems = try decoder.decode(SearchedItems.self, from: response.data!)
-                        self.delegate?.searchedItemsFetched(self.searchedItems!)
+                        self.search = try decoder.decode(Search.self, from: response.data!)
+                        self.delegate?.getSearchCompleted(self.search!)
                     } catch let error {
                         print("getSearchList: " + "\(error)")
                     }
@@ -42,6 +59,20 @@ class Model {
                 print(response.error!)
             }
         }
+        /*
+        if let url = Bundle.main.url(forResource: "jsonTest", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                //let jsonData = try decoder.decode(ResponseData.self, from: data)
+                self.search = try decoder.decode(Search.self, from: data)
+                self.delegate?.getSearchCompleted(self.search!)
+                //return jsonData.person
+            } catch {
+                print("error:\(error)")
+            }
+        }*/
     }
     
     func getPlayListItems(withId playlistId: String) {

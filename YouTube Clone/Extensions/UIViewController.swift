@@ -18,9 +18,12 @@ extension UIViewController {
         view.endEditing(true)
     }
     
-    func presentSearchResultVC() {
+    func presentSearchResultVC(barTitle: String, model: Model) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let searchResultVC = storyboard.instantiateViewController(withIdentifier: "SearchResultVC")
+        let searchResultVC = storyboard.instantiateViewController(withIdentifier: "SearchResultVC") as! SearchResultVC
+        
+        searchResultVC.barTitle = barTitle
+        searchResultVC.model = model
         
         searchResultVC.modalPresentationStyle = .fullScreen
         searchResultVC.modalTransitionStyle = .crossDissolve
