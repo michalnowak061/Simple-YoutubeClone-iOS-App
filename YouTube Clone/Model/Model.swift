@@ -24,6 +24,8 @@ class Model {
     var playListItems: PlayListItems? = nil
     
     func getThumbnails(urls: [String]) {
+        self.thumbnails = []
+        
         for url in urls {
             AF.request(url).response { [self] response in
                 guard response.data != nil else {
@@ -39,7 +41,9 @@ class Model {
         }
     }
     
-    func getSearch(q: String, maxResults: Int, type: String = "channel+playlist+video") {
+    func getSearch(q: String, maxResults: Int, type: String = "channel+playlist+video", nextPageToken: String = "") {
+        self.search = nil
+        /*
         let url = "\(API_URL)search?part=snippet&maxResults=\(maxResults)&q=\(q)&type=\(type)&key=\(API_KEY)"
         
         AF.request(url, method: .get).response { response in
@@ -59,20 +63,18 @@ class Model {
                 print(response.error!)
             }
         }
-        /*
+        */
         if let url = Bundle.main.url(forResource: "jsonTest", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
-                //let jsonData = try decoder.decode(ResponseData.self, from: data)
                 self.search = try decoder.decode(Search.self, from: data)
                 self.delegate?.getSearchCompleted(self.search!)
-                //return jsonData.person
             } catch {
                 print("error:\(error)")
             }
-        }*/
+        }
     }
     
     func getPlayListItems(withId playlistId: String) {

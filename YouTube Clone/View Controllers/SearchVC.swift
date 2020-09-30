@@ -13,6 +13,7 @@ class SearchVC: UIViewController {
     var model = Model()
     var search: Search? = nil
     var archivedSearch: [String] = []
+    var archivedSearchContains: [String] = []
     
     enum SearchVCState {
         case archived
@@ -43,7 +44,16 @@ class SearchVC: UIViewController {
     private func viewUpdate() {
         self.tableView.reloadData()
         self.saveArchivedSearch()
-        print("Status: \(self.state)")
+    }
+    
+    private func getArchivedSearch(thatContains keyword: String) -> [String] {
+        var searchesContaining: [String] = []
+        for item in archivedSearch {
+            if item.contains(keyword) {
+                searchesContaining.append(item)
+            }
+        }
+        return searchesContaining
     }
     
     private func saveArchivedSearch() {
@@ -81,7 +91,7 @@ extension SearchVC: ModelDelegate {
         self.search = searchedItems
         viewUpdate()
         if self.state == .searchingCompleted || self.state == .selected || self.state == .archived {
-            presentSearchResultVC(barTitle: self.searchBar.text ?? "", model: self.model)
+            presentSearchResultVC(barTitle: self.searchBar.text ?? "", search: self.search!)
         }
     }
     func playListItemsFetched(_ playListItems: PlayListItems) {}
@@ -99,13 +109,16 @@ extension SearchVC: UISearchBarDelegate {
             self.viewUpdate()
             return
         }
+        
+        self.archivedSearchContains = self.getArchivedSearch(thatContains: searchText)
+        
         switch self.state {
         case .archived:
             self.state = .searching
             break
         case .searching:
             let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
-            self.model.getSearch(q: keyWords, maxResults: 15)
+            self.model.getSearch(q: keyWords, maxResults: 11)
             break
         case .searchingCompleted:
             break
@@ -123,7 +136,7 @@ extension SearchVC: UISearchBarDelegate {
             if self.search != nil {
                 self.state = .searchingCompleted
                 let keyWords: String = searchBar.text?.replacingOccurrences(of: " ", with: "+") ?? ""
-                self.model.getSearch(q: keyWords, maxResults: 15, type: "video")
+                self.model.getSearch(q: keyWords, maxResults: 11, type: "video")
             }
         }
     }
@@ -149,7 +162,13 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             let title = self.search?.items[indexPath.row].snippet.title
             let cell = self.tableView.dequeueReusableCell(withIdentifier: SearchTVC().identifier, for: indexPath) as! SearchTVC
-            cell.setSearch(withTitle: title ?? "")
+            if archivedSearchContains.count > indexPath.row {
+                let title = archivedSearchContains[indexPath.row]
+                cell.setArchivedSearch(withTitle: title)
+            }
+            else {
+                cell.setSearch(withTitle: title ?? "")
+            }
             return cell
         }
     }
@@ -160,27 +179,30 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
             self.state = .selected
             self.searchBar.text = searchText
             let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
-            self.model.getSearch(q: keyWords, maxResults: 15, type: "video")
+            self.model.getSearch(q: keyWords, maxResults: 11, type: "video")
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        var deleteAction: UIContextualAction {
-            let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
-                self.archivedSearch.reverse()
-                self.archivedSearch.remove(at: indexPath.row)
-                self.archivedSearch.reverse()
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                self.viewUpdate()
-                completion(true)
-            }
-            action.title = "Delete"
-            action.backgroundColor = .red
-            return action
-        }
+        print("Status: \(self.state)")
         if self.state == .archived {
+            var deleteAction: UIContextualAction {
+                let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+                    self.archivedSearch.reverse()
+                    self.archivedSearch.remove(at: indexPath.row)
+                    self.archivedSearch.reverse()
+                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                    self.viewUpdate()
+                    completion(true)
+                }
+                action.title = "Delete"
+                action.backgroundColor = .red
+                return action
+            }
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
-        return nil
+        else {
+            return UISwipeActionsConfiguration(actions: [])
+        }
     }
 }

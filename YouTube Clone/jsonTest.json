@@ -1,11 +1,11 @@
 {
   "kind": "youtube#searchListResponse",
-  "etag": "d6HvpBX92QYcF0UTPl9XfbFM9Ws",
-  "nextPageToken": "CAUQAA",
+  "etag": "3re7Bnhj5K-584RR0-fBc7iqqIk",
+  "nextPageToken": "CA8QAA",
   "regionCode": "PL",
   "pageInfo": {
-    "totalResults": 9726,
-    "resultsPerPage": 5
+    "totalResults": 9725,
+    "resultsPerPage": 15
   },
   "items": [
     {
@@ -40,6 +40,40 @@
         "channelTitle": "Browar Kopyra",
         "liveBroadcastContent": "none",
         "publishTime": "2020-07-30T15:00:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "MeQaiScVpJaIfffYsrXfvWPMuQ8",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "TbMV916AcHw"
+      },
+      "snippet": {
+        "publishedAt": "2020-09-30T08:00:14Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "KPR Kraft Roku 2020 - Komunikat Szefa Jury",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) o tegorocznej edycji Konkursu Piw Rzemieślniczych Kraft Roku 2020. Jakie zmiany w kategoriach? Kiedy się odbędzie ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/TbMV916AcHw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/TbMV916AcHw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/TbMV916AcHw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-09-30T08:00:14Z"
       }
     },
     {
@@ -112,36 +146,104 @@
     },
     {
       "kind": "youtube#searchResult",
-      "etag": "8kKzV6ngjmkmf1A_eRA2F0KUjQM",
+      "etag": "zzKGL1NEBH6bxNY4OOp80MTnIwE",
       "id": {
         "kind": "youtube#video",
-        "videoId": "qIc-X2iA1iY"
+        "videoId": "j3H5oDRDbxI"
       },
       "snippet": {
-        "publishedAt": "2020-09-28T15:30:11Z",
+        "publishedAt": "2020-09-01T08:00:14Z",
         "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
-        "title": "Le Polonais c&#39;t&#39;une joke Johanniter Chardonnay BA 2020 - Widawa feat. Moderna &amp; Duhnam",
-        "description": "Tomasz Kopyra (https://blog.kopyra.com) degustuje piwo Le Polonais c't'une joke w edycji 2019/20 Silesian Grape Ale z moszczem z winogron odmiany ...",
+        "title": "Browar Lubicz  - piwo za piątaka z dostawą do domu",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) degustuje piwa z Browaru Lubicz, który sprzedaje swoje piwa wysyłkowo (https://sklep.browar-lubicz.com.pl/).",
         "thumbnails": {
           "default": {
-            "url": "https://i.ytimg.com/vi/qIc-X2iA1iY/default.jpg",
+            "url": "https://i.ytimg.com/vi/j3H5oDRDbxI/default.jpg",
             "width": 120,
             "height": 90
           },
           "medium": {
-            "url": "https://i.ytimg.com/vi/qIc-X2iA1iY/mqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/j3H5oDRDbxI/mqdefault.jpg",
             "width": 320,
             "height": 180
           },
           "high": {
-            "url": "https://i.ytimg.com/vi/qIc-X2iA1iY/hqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/j3H5oDRDbxI/hqdefault.jpg",
             "width": 480,
             "height": 360
           }
         },
         "channelTitle": "Browar Kopyra",
         "liveBroadcastContent": "none",
-        "publishTime": "2020-09-28T15:30:11Z"
+        "publishTime": "2020-09-01T08:00:14Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "hFjg3mVp0Ee5q5zhWqOUHVJ2YVY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "iQGRLyy0LOs"
+      },
+      "snippet": {
+        "publishedAt": "2020-08-17T08:00:12Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Express Test: Regionalne Lagery 2020 - Amber, Bojan, Cieszyn, Miłosław, Rycerz, Kormoran, Racibórz",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) w Express Teście degustuje regionalne lagery z browarów: Amber: Złote Lwy (29.12.2020), Bojanowo: Bojan Pils ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/iQGRLyy0LOs/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/iQGRLyy0LOs/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/iQGRLyy0LOs/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-08-17T08:00:12Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "jbLme5MgluTZYmKLS6R1txW8qlY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Tf9R7mv2u_s"
+      },
+      "snippet": {
+        "publishedAt": "2020-09-24T11:15:12Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Jeszcze o tym, że Żywiec zamyka Cieszyn #1000ibu #zostawcieCieszyn",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) w felietonie z serii 1000 IBU o planowanym zamknięciu Browaru Zamkowego Cieszyn przez Grupę Żywiec. Dlaczego ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Tf9R7mv2u_s/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Tf9R7mv2u_s/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Tf9R7mv2u_s/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-09-24T11:15:12Z"
       }
     },
     {
@@ -176,6 +278,244 @@
         "channelTitle": "Browar Kopyra",
         "liveBroadcastContent": "none",
         "publishTime": "2020-09-23T14:03:48Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "iCjvoIPzALY0i_3tqzP4iHv1sHo",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "_MfgECnYNfU"
+      },
+      "snippet": {
+        "publishedAt": "2019-09-27T15:00:16Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Van Pur 10% - 4 lata leżakowania",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) degustuje piwo Van Pur 10% leżakowany przez 4 lata. Czy warto było czekać? Czy piwo postarzało się w ciekawy ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/_MfgECnYNfU/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/_MfgECnYNfU/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/_MfgECnYNfU/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-09-27T15:00:16Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "JbMpX2TUIOau345Oln8VgmLkN4E",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "6poS9MR7eX0"
+      },
+      "snippet": {
+        "publishedAt": "2020-05-13T08:00:13Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "NIE zmasakrowałem barmanki z 7 metrów pod ziemią",
+        "description": "Materiał źródłowy: https://www.youtube.com/watch?v=f_9VHzfTSPs Tomasz Kopyra (https://blog.kopyra.com) o tym dlaczego nie ma sensu masakrowanie ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/6poS9MR7eX0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/6poS9MR7eX0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/6poS9MR7eX0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-05-13T08:00:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "y1wgPKXltoMRhHUZh-qIzEGXfik",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "KDMeCXl0T34"
+      },
+      "snippet": {
+        "publishedAt": "2020-06-25T14:00:15Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Kopyr masakruje Onet #1000ibu",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) masakruje artykuł portalu Onet Facet dotyczący warzenia piwa w domu.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/KDMeCXl0T34/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/KDMeCXl0T34/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/KDMeCXl0T34/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-06-25T14:00:15Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "LObLrw1VSzjY5A0Me8kumBOdT80",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "OiaqESbo9hY"
+      },
+      "snippet": {
+        "publishedAt": "2018-02-09T07:25:02Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Janusz &amp; Kopyr testują Książęce IPA",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) i Janusz Kustosz (http://typowyjanusz.com.pl) testują Książęce IPA z Kompanii Piwowarskiej.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/OiaqESbo9hY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/OiaqESbo9hY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/OiaqESbo9hY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-02-09T07:25:02Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "MooOpssNASf_kE62kIdoM6ymRnY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "oY4EOq4bq4A"
+      },
+      "snippet": {
+        "publishedAt": "2020-05-25T08:00:13Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Argus vs Perlenbacher czyli Wielki Test Piw z Lidla 2020",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) w ślepym teście sprawdza, które z piw marki własnej sieci handlowej Lidl jest najlepsze. Soundtrack: Doug ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/oY4EOq4bq4A/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/oY4EOq4bq4A/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/oY4EOq4bq4A/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-05-25T08:00:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "EsxXs7BzGJM-L0hp7pZa3xg6VvU",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "7ejadxfxgiQ"
+      },
+      "snippet": {
+        "publishedAt": "2019-09-26T15:00:13Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Dieta kopyra, czyli wracam do diety przemiennej #ZeroIBU",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) w serii [Zero IBU], a więc nie dotyczącej piwa opowiada o diecie przemiennej (ang. Alternate Day Fasting), która jest ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/7ejadxfxgiQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/7ejadxfxgiQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/7ejadxfxgiQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-09-26T15:00:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "6SLmbJQ3DD7dzHl8cNRaIU8jzv0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "uU9ZXAN3uLc"
+      },
+      "snippet": {
+        "publishedAt": "2019-01-07T19:28:18Z",
+        "channelId": "UCLm7DMKc2OAPTihoGQwCWmw",
+        "title": "Pia - Trzech Kumpli &amp; Hazy Morning - PINTA",
+        "description": "Tomasz Kopyra (https://blog.kopyra.com) degustuje 2 Session NEIPA, czyli Pia z Browaru Trzech Kumpli oraz Hazy Morning z browaru PINTA. Soundtrack: ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/uU9ZXAN3uLc/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/uU9ZXAN3uLc/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/uU9ZXAN3uLc/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Browar Kopyra",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-01-07T19:28:18Z"
       }
     }
   ]
