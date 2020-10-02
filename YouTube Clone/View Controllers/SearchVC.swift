@@ -37,8 +37,6 @@ class SearchVC: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        hideKeyboardWhenTappedAround()
     }
     
     private func viewUpdate() {
@@ -68,13 +66,19 @@ class SearchVC: UIViewController {
         self.archivedSearch.loadFromFile(path: path)
     }
     
+    private func addToArchivedSearch(search: String) {
+        if !self.archivedSearch.contains(search) {
+            self.archivedSearch.append(search)
+        }
+    }
+    
     // MARK: - @IBOutlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - @IBActions
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func clearButtonPressed(_ sender: UIButton) {
@@ -118,7 +122,7 @@ extension SearchVC: UISearchBarDelegate {
             break
         case .searching:
             let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
-            self.model.getSearch(q: keyWords, maxResults: 11)
+            self.model.getSearch(q: keyWords, maxResults: "11")
             break
         case .searchingCompleted:
             break
@@ -130,13 +134,11 @@ extension SearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let item = self.searchBar.text, !item.isEmpty {
-            if !self.archivedSearch.contains(item) {
-                self.archivedSearch.append(item)
-            }
+            addToArchivedSearch(search: item)
             if self.search != nil {
                 self.state = .searchingCompleted
                 let keyWords: String = searchBar.text?.replacingOccurrences(of: " ", with: "+") ?? ""
-                self.model.getSearch(q: keyWords, maxResults: 11, type: "video")
+                self.model.getSearch(q: keyWords, maxResults: "11", type: "video")
             }
         }
     }
@@ -176,10 +178,11 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = self.tableView.cellForRow(at: indexPath) as! SearchTVC
         if let searchText = selectedCell.titleLabel.text {
+            addToArchivedSearch(search: searchText)
             self.state = .selected
             self.searchBar.text = searchText
             let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
-            self.model.getSearch(q: keyWords, maxResults: 11, type: "video")
+            self.model.getSearch(q: keyWords, maxResults: "11", type: "video")
         }
     }
     

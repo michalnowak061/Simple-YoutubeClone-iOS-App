@@ -90,7 +90,8 @@ class SearchResultVC: UIViewController {
         dataQueue.async {
             if let search = self.model.search {
                 let nextPageToken = search.nextPageToken
-                self.model.getSearch(q: "kopyra", maxResults: 15, nextPageToken: nextPageToken)
+                let keywords = self.barTitle
+                self.model.getSearch(q: keywords, maxResults: "11", nextPageToken: nextPageToken)
             }
         }
     }
@@ -127,7 +128,7 @@ class SearchResultVC: UIViewController {
 
 extension SearchResultVC: ModelDelegate {
     func getThumbnailsCompleted(_ thumbnails: [UIImage]) {
-        self.thumbnails += self.model.thumbnails
+        self.thumbnails = self.model.thumbnails
         self.updateView()
     }
     func getSearchCompleted(_ search: Search) {
@@ -160,5 +161,9 @@ extension SearchResultVC: UICollectionViewDataSource, UICollectionViewDelegate {
         if indexPath.row == collectionView.numberOfItems(inSection: 0) - offset {
             self.downloadNextPage()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("CLICKED \(indexPath.row)")
     }
 }

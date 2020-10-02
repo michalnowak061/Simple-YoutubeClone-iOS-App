@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e1n-bX-Hto">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OWn-5e-KpP">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -14,7 +14,7 @@
         <!--Home-->
         <scene sceneID="Qbh-p0-K5E">
             <objects>
-                <viewController storyboardIdentifier="MainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agK-Nm-WH8" customClass="MainVC" customModule="YouTube_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agK-Nm-WH8" customClass="HomeVC" customModule="YouTube_Clone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5TM-9i-a3b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="5zi-9v-uz1">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
-                                                <segue destination="TGY-r9-Qgb" kind="presentation" identifier="presentSearchVC" modalPresentationStyle="fullScreen" id="RSf-3b-hG6"/>
+                                                <segue destination="TGY-r9-Qgb" kind="presentation" identifier="presentSearchVC" animates="NO" modalPresentationStyle="fullScreen" id="RSf-3b-hG6"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -62,19 +62,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ymY-l0-4AS">
-                                <rect key="frame" x="0.0" y="61" width="375" height="586"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ymY-l0-4AS">
+                                <rect key="frame" x="0.0" y="61" width="375" height="606"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchTVC" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTVC" id="PY2-s2-Yuu" customClass="SearchTVC" customModule="YouTube_Clone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="59"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="58.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PY2-s2-Yuu" id="LPy-Mh-D98">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="58.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Archived search title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdC-BF-VuP">
-                                                    <rect key="frame" x="54" y="6" width="267" height="29"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Archived search title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdC-BF-VuP">
+                                                    <rect key="frame" x="54" y="6" width="267" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="267" id="wOq-xe-a2x"/>
                                                     </constraints>
@@ -82,15 +81,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOK-Mb-fZK">
-                                                    <rect key="frame" x="329" y="6" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOK-Mb-fZK">
+                                                    <rect key="frame" x="329" y="6" width="30" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title="↸">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SF_archivebox_fill" translatesAutoresizingMaskIntoConstraints="NO" id="eaU-D0-piq">
-                                                    <rect key="frame" x="16" y="6" width="30" height="30"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SF_archivebox_fill" translatesAutoresizingMaskIntoConstraints="NO" id="eaU-D0-piq">
+                                                    <rect key="frame" x="16" y="6" width="30" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="ozI-fK-rnj"/>
                                                     </constraints>
@@ -154,6 +153,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IiC-fv-S4A" firstAttribute="baseline" secondItem="Ctu-px-k5E" secondAttribute="firstBaseline" id="4Jh-9J-u8z"/>
+                            <constraint firstItem="ymY-l0-4AS" firstAttribute="bottom" secondItem="ZBq-Zn-vRT" secondAttribute="bottom" id="9x3-ed-U8c"/>
                             <constraint firstItem="Yv9-HN-RdP" firstAttribute="centerX" secondItem="ymY-l0-4AS" secondAttribute="centerX" id="Jup-le-Vaf"/>
                             <constraint firstItem="Ctu-px-k5E" firstAttribute="trailing" secondItem="ymY-l0-4AS" secondAttribute="trailing" id="S5K-a5-AIN"/>
                             <constraint firstItem="IiC-fv-S4A" firstAttribute="leading" secondItem="TLc-fz-5EN" secondAttribute="leading" id="SMt-Iu-4Bf"/>
@@ -163,7 +163,6 @@
                             <constraint firstItem="IiC-fv-S4A" firstAttribute="centerY" secondItem="Yv9-HN-RdP" secondAttribute="centerY" id="crF-F0-pos"/>
                             <constraint firstItem="ymY-l0-4AS" firstAttribute="top" secondItem="IiC-fv-S4A" secondAttribute="bottom" constant="8" symbolic="YES" id="gcx-9b-3NP"/>
                             <constraint firstItem="IiC-fv-S4A" firstAttribute="top" secondItem="ZBq-Zn-vRT" secondAttribute="top" constant="3" id="hIK-bS-xnd"/>
-                            <constraint firstAttribute="bottom" secondItem="ymY-l0-4AS" secondAttribute="bottom" constant="20" symbolic="YES" id="p6E-gb-WIW"/>
                             <constraint firstItem="IiC-fv-S4A" firstAttribute="leading" secondItem="ymY-l0-4AS" secondAttribute="leading" id="p9t-dK-jgI"/>
                             <constraint firstItem="Yv9-HN-RdP" firstAttribute="leading" secondItem="IiC-fv-S4A" secondAttribute="trailing" id="thK-hp-a7b"/>
                             <constraint firstItem="Ctu-px-k5E" firstAttribute="leading" secondItem="Yv9-HN-RdP" secondAttribute="trailing" id="vFv-oA-gSv"/>
@@ -178,6 +177,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zrU-Oj-qzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1298.4000000000001" y="-21.139430284857571"/>
+        </scene>
+        <!--MainVC-->
+        <scene sceneID="dRR-Ui-ply">
+            <objects>
+                <viewController storyboardIdentifier="MainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OWn-5e-KpP" customClass="MainVC" customModule="YouTube_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0z2-9w-qN7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuI-4c-bDV">
+                                <rect key="frame" x="0.0" y="310" width="375" height="30"/>
+                                <state key="normal" title="Sign in with Google"/>
+                                <connections>
+                                    <action selector="sigInButtonPressed:" destination="OWn-5e-KpP" eventType="touchUpInside" id="MbH-hc-YNh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YouTube Clone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaP-We-iDo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="67"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rgf-Op-N3T"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rgf-Op-N3T" firstAttribute="trailing" secondItem="IuI-4c-bDV" secondAttribute="trailing" id="MWI-Y4-ssr"/>
+                            <constraint firstItem="IaP-We-iDo" firstAttribute="leading" secondItem="Rgf-Op-N3T" secondAttribute="leading" id="Sil-hh-q9s"/>
+                            <constraint firstItem="IuI-4c-bDV" firstAttribute="top" secondItem="IaP-We-iDo" secondAttribute="bottom" constant="150" id="T8D-4U-g2i"/>
+                            <constraint firstItem="IuI-4c-bDV" firstAttribute="leading" secondItem="Rgf-Op-N3T" secondAttribute="leading" id="d6B-9N-MtG"/>
+                            <constraint firstItem="IaP-We-iDo" firstAttribute="top" secondItem="Rgf-Op-N3T" secondAttribute="top" id="r8H-eJ-zxw"/>
+                            <constraint firstItem="Rgf-Op-N3T" firstAttribute="trailing" secondItem="IaP-We-iDo" secondAttribute="trailing" id="t32-VJ-CN0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signInButton" destination="IuI-4c-bDV" id="bEJ-4x-t7k"/>
+                        <segue destination="e1n-bX-Hto" kind="presentation" identifier="presentTabBarController" modalPresentationStyle="fullScreen" id="7Pi-02-wFR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C4V-8E-eHU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4071.1999999999998" y="364.7676161919041"/>
         </scene>
         <!--Playlists-->
         <scene sceneID="fVW-So-sLg">

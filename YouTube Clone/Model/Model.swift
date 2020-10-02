@@ -41,10 +41,15 @@ class Model {
         }
     }
     
-    func getSearch(q: String, maxResults: Int, type: String = "channel+playlist+video", nextPageToken: String = "") {
+    func getSearch(q: String = "", maxResults: String = "", type: String = "", nextPageToken: String = "") {
         self.search = nil
-        /*
-        let url = "\(API_URL)search?part=snippet&maxResults=\(maxResults)&q=\(q)&type=\(type)&key=\(API_KEY)"
+
+        var url = "https://www.googleapis.com/youtube/v3/search?part=snippet"
+        url += "&q=\(q)"
+        url += "&maxResults=\(maxResults)"
+        url += "&type=\(type)"
+        url += "&nextPageToken=\(nextPageToken)"
+        url += "&access_token=\(googleUser.accessToken)"
         
         AF.request(url, method: .get).response { response in
             if response.error == nil {
@@ -61,18 +66,6 @@ class Model {
             }
             else {
                 print(response.error!)
-            }
-        }
-        */
-        if let url = Bundle.main.url(forResource: "jsonTest", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                self.search = try decoder.decode(Search.self, from: data)
-                self.delegate?.getSearchCompleted(self.search!)
-            } catch {
-                print("error:\(error)")
             }
         }
     }

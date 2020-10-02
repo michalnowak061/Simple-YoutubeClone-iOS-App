@@ -7,4 +7,6 @@ target 'YouTube Clone' do
 
   # Pods for YouTube Clone
   pod 'Alamofire', '~> 5.2'
+  pod 'GoogleAPIClientForREST/YouTube', '~> 1.2.1'
+  pod 'Google/SignIn', '~> 3.0.3'
 end
