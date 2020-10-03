@@ -47,7 +47,7 @@ class SearchVC: UIViewController {
     private func getArchivedSearch(thatContains keyword: String) -> [String] {
         var searchesContaining: [String] = []
         for item in archivedSearch {
-            if item.contains(keyword) {
+            if item.containsIgnoringCase(find: keyword) {
                 searchesContaining.append(item)
             }
         }
