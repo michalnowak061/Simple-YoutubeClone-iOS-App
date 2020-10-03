@@ -10,6 +10,7 @@
 		9D2E1D6525274A5400A12CE1 /* client_644150052758-ocs0tcrhjabspegl9b3abgln8amsdoor.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D2E1D6425274A5400A12CE1 /* client_644150052758-ocs0tcrhjabspegl9b3abgln8amsdoor.apps.googleusercontent.com.plist */; };
 		9D2E1D6925274EE000A12CE1 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2E1D6825274EE000A12CE1 /* HomeVC.swift */; };
 		9D2E1D8525276E1700A12CE1 /* GoogleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2E1D8425276E1700A12CE1 /* GoogleUser.swift */; };
+		9D2E1DAD2527CF5400A12CE1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2E1DAC2527CF5300A12CE1 /* String.swift */; };
 		9D3E0C77251F729000CF4F23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3E0C76251F729000CF4F23 /* AppDelegate.swift */; };
 		9D3E0C79251F729000CF4F23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3E0C78251F729000CF4F23 /* SceneDelegate.swift */; };
 		9D3E0C7B251F729000CF4F23 /* PlayListItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3E0C7A251F729000CF4F23 /* PlayListItemsVC.swift */; };
@@ -37,6 +38,7 @@
 		9D2E1D6425274A5400A12CE1 /* client_644150052758-ocs0tcrhjabspegl9b3abgln8amsdoor.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_644150052758-ocs0tcrhjabspegl9b3abgln8amsdoor.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		9D2E1D6825274EE000A12CE1 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		9D2E1D8425276E1700A12CE1 /* GoogleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUser.swift; sourceTree = "<group>"; };
+		9D2E1DAC2527CF5300A12CE1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		9D3E0C73251F729000CF4F23 /* YouTube Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D3E0C76251F729000CF4F23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D3E0C78251F729000CF4F23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				9DBD4112252159FC00E4715A /* UIViewController.swift */,
 				9DF050B72521615800049586 /* UISearchBar.swift */,
 				9DD23B0525238629004FD419 /* Array.swift */,
+				9D2E1DAC2527CF5300A12CE1 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				9DF050BB2522055600049586 /* SearchResultVC.swift in Sources */,
 				9D2E1D6925274EE000A12CE1 /* HomeVC.swift in Sources */,
 				9D3E0CA4251FDBC100CF4F23 /* PlayListItemCVC.swift in Sources */,
+				9D2E1DAD2527CF5400A12CE1 /* String.swift in Sources */,
 				9DDD3D3225210797006A1659 /* Search.swift in Sources */,
 				9D3E0C77251F729000CF4F23 /* AppDelegate.swift in Sources */,
 				9D3E0C79251F729000CF4F23 /* SceneDelegate.swift in Sources */,

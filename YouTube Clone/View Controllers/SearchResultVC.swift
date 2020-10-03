@@ -17,7 +17,7 @@ class SearchResultVC: UIViewController {
     var barTitle: String = ""
     var model: Model = Model()
     var search: Search? = nil
-    var thumbnails: [UIImage] = []
+    var thumbnails: [String : UIImage] = [:]
     var dataToDisplay: [ItemToDisplay] = []
     let mainQueue = DispatchQueue.main
     let dataQueue = DispatchQueue.init(label: "dataQueue")
@@ -44,7 +44,7 @@ class SearchResultVC: UIViewController {
         func dataSetup() {
             self.model.delegate = self
             self.model.search = self.search
-            self.downloadThumbnails()
+            self.model.getThumbnails()
         }
         
         navigationBarSetup()
@@ -56,10 +56,10 @@ class SearchResultVC: UIViewController {
         if let search = self.model.search {
             var iterator: Int = 0
             for item in search.items {
-                let image = thumbnails[iterator]
+                let image = thumbnails[item.snippet.thumbnails.medium.url]
                 let title = item.snippet.title
                 let channelName = item.snippet.channelTitle
-                let itemToDisplay = ItemToDisplay(image: image, title: title, channelName: channelName)
+                let itemToDisplay = ItemToDisplay(image: image!, title: title, channelName: channelName)
                 self.dataToDisplay.append(itemToDisplay)
                 iterator += 1
             }
@@ -73,25 +73,13 @@ class SearchResultVC: UIViewController {
         }
     }
     
-    private func downloadThumbnails() {
-        dataQueue.async {
-            if let search = self.model.search {
-                var urls: [String] = []
-                for item in search.items {
-                    let url = item.snippet.thumbnails.medium.url
-                    urls.append(url)
-                }
-                self.model.getThumbnails(urls: urls)
-            }
-        }
-    }
-    
     private func downloadNextPage() {
         dataQueue.async {
             if let search = self.model.search {
                 let nextPageToken = search.nextPageToken
-                let keywords = self.barTitle
-                self.model.getSearch(q: keywords, maxResults: "11", nextPageToken: nextPageToken)
+                var keywords = self.barTitle
+                keywords = keywords.convertedToSlug() ?? ""
+                self.model.getSearch(q: keywords, maxResults: "11", type: "video", pageToken: nextPageToken)
             }
         }
     }
@@ -127,12 +115,12 @@ class SearchResultVC: UIViewController {
 }
 
 extension SearchResultVC: ModelDelegate {
-    func getThumbnailsCompleted(_ thumbnails: [UIImage]) {
+    func getThumbnailsCompleted(_ thumbnails: [String : UIImage]) {
         self.thumbnails = self.model.thumbnails
         self.updateView()
     }
     func getSearchCompleted(_ search: Search) {
-        self.downloadThumbnails()
+        self.model.getThumbnails()
     }
     func playListItemsFetched(_ playListItems: PlayListItems) {}
 }

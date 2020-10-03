@@ -90,7 +90,7 @@ class SearchVC: UIViewController {
 }
 // MARK: - SearchVC extensions
 extension SearchVC: ModelDelegate {
-    func getThumbnailsCompleted(_ thumbnails: [UIImage]) {}
+    func getThumbnailsCompleted(_ thumbnails: [String : UIImage]) {}
     func getSearchCompleted(_ searchedItems: Search) {
         self.search = searchedItems
         viewUpdate()
@@ -113,22 +113,11 @@ extension SearchVC: UISearchBarDelegate {
             self.viewUpdate()
             return
         }
-        
+        self.state = .searching
         self.archivedSearchContains = self.getArchivedSearch(thatContains: searchText)
-        
-        switch self.state {
-        case .archived:
-            self.state = .searching
-            break
-        case .searching:
-            let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
-            self.model.getSearch(q: keyWords, maxResults: "11")
-            break
-        case .searchingCompleted:
-            break
-        case .selected:
-            break
-        }
+        var keyWords: String =  searchBar.text ?? ""
+        keyWords = keyWords.convertedToSlug() ?? ""
+        self.model.getSearch(q: keyWords, maxResults: "11")
         self.viewUpdate()
     }
     
@@ -137,7 +126,8 @@ extension SearchVC: UISearchBarDelegate {
             addToArchivedSearch(search: item)
             if self.search != nil {
                 self.state = .searchingCompleted
-                let keyWords: String = searchBar.text?.replacingOccurrences(of: " ", with: "+") ?? ""
+                var keyWords: String =  searchBar.text ?? ""
+                keyWords = keyWords.convertedToSlug() ?? ""
                 self.model.getSearch(q: keyWords, maxResults: "11", type: "video")
             }
         }
@@ -178,16 +168,17 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = self.tableView.cellForRow(at: indexPath) as! SearchTVC
         if let searchText = selectedCell.titleLabel.text {
-            addToArchivedSearch(search: searchText)
             self.state = .selected
+            addToArchivedSearch(search: searchText)
             self.searchBar.text = searchText
-            let keyWords: String = searchText.replacingOccurrences(of: " ", with: "+")
+            var keyWords: String =  searchBar.text ?? ""
+            keyWords = keyWords.convertedToSlug() ?? ""
+            print(keyWords)
             self.model.getSearch(q: keyWords, maxResults: "11", type: "video")
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        print("Status: \(self.state)")
         if self.state == .archived {
             var deleteAction: UIContextualAction {
                 let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in

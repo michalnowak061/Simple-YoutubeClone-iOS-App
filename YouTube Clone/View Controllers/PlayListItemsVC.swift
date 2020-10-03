@@ -43,7 +43,7 @@ class PlayListItemsVC: UIViewController {
 }
 
 extension PlayListItemsVC: ModelDelegate {
-    func getThumbnailsCompleted(_ thumbnails: [UIImage]) {}
+    func getThumbnailsCompleted(_ thumbnails: [String : UIImage]) {}
     func getSearchCompleted(_ searchedItems: Search) {}
     func playListItemsFetched(_ playListItems: PlayListItems) {
         self.playListItems = playListItems

@@ -10,7 +10,7 @@ import Alamofire
 
 protocol ModelDelegate {
     func getSearchCompleted(_ search: Search)
-    func getThumbnailsCompleted(_ thumbnails: [UIImage])
+    func getThumbnailsCompleted(_ thumbnails: [String : UIImage])
     func playListItemsFetched(_ playListItems: PlayListItems)
 }
 
@@ -19,21 +19,23 @@ class Model {
     let API_KEY = "AIzaSyC8renxi8A86PsIqgh8jtdCBA9EsdgFckU"
     
     var delegate: ModelDelegate?
-    var thumbnails: [UIImage] = []
+    var thumbnails: [String : UIImage] = [:]
     var search: Search? = nil
     var playListItems: PlayListItems? = nil
     
-    func getThumbnails(urls: [String]) {
-        self.thumbnails = []
-        
-        for url in urls {
+    func getThumbnails() {
+        self.thumbnails = [:]
+
+        for item in search!.items {
+            let url = item.snippet.thumbnails.medium.url
+            
             AF.request(url).response { [self] response in
                 guard response.data != nil else {
                     return
                 }
                 if let image = UIImage(data: response.data!, scale: 1) {
-                    thumbnails.append(image)
-                    if thumbnails.count == urls.count {
+                    thumbnails[url] = image
+                    if thumbnails.count == search!.items.count {
                         self.delegate?.getThumbnailsCompleted(thumbnails)
                     }
                 }
@@ -41,14 +43,14 @@ class Model {
         }
     }
     
-    func getSearch(q: String = "", maxResults: String = "", type: String = "", nextPageToken: String = "") {
+    func getSearch(q: String = "", maxResults: String = "", type: String = "", pageToken: String = "") {
         self.search = nil
 
         var url = "https://www.googleapis.com/youtube/v3/search?part=snippet"
         url += "&q=\(q)"
         url += "&maxResults=\(maxResults)"
         url += "&type=\(type)"
-        url += "&nextPageToken=\(nextPageToken)"
+        url += "&pageToken=\(pageToken)"
         url += "&access_token=\(googleUser.accessToken)"
         
         AF.request(url, method: .get).response { response in
