@@ -64,9 +64,24 @@ extension PlayerVC: YTPlayerViewDelegate {
         let minutes = String(m)
         let hours = String(h)
         if h != 0 {
-            actualTimeLabel.text = hours + ":" + minutes + ":" + seconds
+            self.actualTimeLabel.text = hours + ":" + minutes + ":" + seconds
         } else {
-            actualTimeLabel.text = minutes + ":" + seconds
+            self.actualTimeLabel.text = minutes + ":" + seconds
+        }
+        
+        self.player.duration { (duration, error) in
+            let timeToEnd: Int = Int(duration) - Int(playTime)
+            let (h, m, s) = secondsToHoursMinutesSeconds(seconds: timeToEnd)
+            let seconds = s < 10 ? "0" + String(s) : String(s)
+            let minutes = String(m)
+            let hours = String(h)
+            if h != 0 {
+                self.timeToEndLabel.text = "-" + hours + ":" + minutes + ":" + seconds
+            } else {
+                self.timeToEndLabel.text = "-" + minutes + ":" + seconds
+            }
+            
+            self.playerSlider.value = Float(playTime) / Float(duration)
         }
     }
 }
