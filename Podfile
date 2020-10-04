@@ -9,4 +9,6 @@ target 'YouTube Clone' do
   pod 'Alamofire', '~> 5.2'
   pod 'GoogleAPIClientForREST/YouTube', '~> 1.2.1'
   pod 'Google/SignIn', '~> 3.0.3'
+  pod "youtube-ios-player-helper", "~> 1.0.2"
+  #pod 'YoutubeDirectLinkExtractor'
 end

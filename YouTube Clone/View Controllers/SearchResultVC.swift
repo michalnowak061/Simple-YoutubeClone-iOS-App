@@ -19,6 +19,7 @@ class SearchResultVC: UIViewController {
     var search: Search? = nil
     var thumbnails: [String : UIImage] = [:]
     var dataToDisplay: [ItemToDisplay] = []
+    var selectedVideoId: String = ""
     let mainQueue = DispatchQueue.main
     let dataQueue = DispatchQueue.init(label: "dataQueue")
     var initialTouchPoint: CGPoint = CGPoint(x: 0, y: 0)
@@ -28,10 +29,15 @@ class SearchResultVC: UIViewController {
         self.viewSetup()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PlayerVC {
+            vc.videoId = self.selectedVideoId
+        }
+    }
+    
     private func viewSetup() {
         func navigationBarSetup() {
             self.navigationItem.title = barTitle
-            //navigationBar.topItem?.title = barTitle
         }
         func collectionViewSetup() {
             let layout = UICollectionViewFlowLayout()
@@ -85,7 +91,6 @@ class SearchResultVC: UIViewController {
         }
     }
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!
 }
 
@@ -127,6 +132,7 @@ extension SearchResultVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("CLICKED \(indexPath.row)")
+        self.selectedVideoId = self.search?.items[indexPath.row].id.videoID ?? ""
+        performSegue(withIdentifier: "presentPlayerVC", sender: self)
     }
 }

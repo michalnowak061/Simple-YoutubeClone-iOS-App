@@ -292,7 +292,6 @@
                                             <outlet property="channelNameLabel" destination="kQQ-af-dzH" id="32m-yU-Zbj"/>
                                             <outlet property="thumbnailImageView" destination="VSq-Lj-451" id="Tpc-a2-zx0"/>
                                             <outlet property="titleLabel" destination="YTx-xK-IbI" id="cHq-31-ocj"/>
-                                            <segue destination="Lru-Nu-p2W" kind="show" identifier="presentPlayerVC" id="ROl-Vf-tP1"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -311,11 +310,100 @@
                     <navigationItem key="navigationItem" id="ClV-Ca-fx1"/>
                     <connections>
                         <outlet property="collectionView" destination="Eq6-oO-QmE" id="QDP-1s-36E"/>
+                        <segue destination="aso-jF-PTz" kind="show" identifier="presentPlayerVC" id="ka0-Mw-kDs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fog-8j-bZX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="484" y="-55.322338830584712"/>
+        </scene>
+        <!--PlayerVC-->
+        <scene sceneID="SU6-dg-yPS">
+            <objects>
+                <viewController storyboardIdentifier="PlayerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aso-jF-PTz" customClass="PlayerVC" customModule="YouTube_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p6i-vh-rK8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5G-ra-jG7">
+                                <rect key="frame" x="166" y="384" width="42" height="30"/>
+                                <state key="normal" title="Pause"/>
+                                <connections>
+                                    <action selector="pauseButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="PLr-La-NTU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5z-ES-mnM">
+                                <rect key="frame" x="172" y="346" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="uUa-JW-jR2"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" restorationIdentifier="YTPlayerView" translatesAutoresizingMaskIntoConstraints="NO" id="T2c-qA-feC" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="210"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xuB-iL-2cN">
+                                <rect key="frame" x="265" y="346" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="ikE-Kb-40a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUV-Ex-F77">
+                                <rect key="frame" x="52" y="346" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="previousButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="f1p-9E-MYZ"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eNW-d0-Sk2">
+                                <rect key="frame" x="45" y="254" width="285" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxS-FR-iVM">
+                                <rect key="frame" x="16" y="262" width="23" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsy-XJ-5wB">
+                                <rect key="frame" x="336" y="262" width="23" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="atJ-4C-uai"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="T2c-qA-feC" firstAttribute="top" secondItem="atJ-4C-uai" secondAttribute="top" id="2zs-OO-oWz"/>
+                            <constraint firstItem="N5z-ES-mnM" firstAttribute="centerX" secondItem="z5G-ra-jG7" secondAttribute="centerX" id="5lp-Rj-XQn"/>
+                            <constraint firstItem="atJ-4C-uai" firstAttribute="bottom" secondItem="z5G-ra-jG7" secondAttribute="bottom" constant="204" id="P6o-Lt-Oki"/>
+                            <constraint firstItem="N5z-ES-mnM" firstAttribute="leading" secondItem="atJ-4C-uai" secondAttribute="leading" constant="172" id="Twd-Zj-FG6"/>
+                            <constraint firstItem="z5G-ra-jG7" firstAttribute="top" secondItem="N5z-ES-mnM" secondAttribute="bottom" constant="8" symbolic="YES" id="eNg-iV-tOY"/>
+                            <constraint firstItem="T2c-qA-feC" firstAttribute="centerX" secondItem="N5z-ES-mnM" secondAttribute="centerX" id="g8G-HI-IXL"/>
+                            <constraint firstItem="T2c-qA-feC" firstAttribute="leading" secondItem="p6i-vh-rK8" secondAttribute="leading" id="uhF-sU-Hrw"/>
+                            <constraint firstItem="N5z-ES-mnM" firstAttribute="top" secondItem="T2c-qA-feC" secondAttribute="bottom" constant="92" id="wFA-o5-paE"/>
+                            <constraint firstItem="z5G-ra-jG7" firstAttribute="leading" secondItem="atJ-4C-uai" secondAttribute="leading" constant="166" id="xpH-v9-0Rf"/>
+                            <constraint firstAttribute="trailing" secondItem="T2c-qA-feC" secondAttribute="trailing" id="xz4-kX-G3T"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8r5-wA-3fh"/>
+                    <connections>
+                        <outlet property="actualTimeLabel" destination="GxS-FR-iVM" id="TLn-RN-Ad0"/>
+                        <outlet property="player" destination="T2c-qA-feC" id="0by-ZI-aND"/>
+                        <outlet property="playerSlider" destination="eNW-d0-Sk2" id="23h-lc-fCk"/>
+                        <outlet property="timeToEndLabel" destination="fsy-XJ-5wB" id="1yf-LF-goJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MqD-ou-umm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1381.5999999999999" y="-55.322338830584712"/>
         </scene>
         <!--Home-->
         <scene sceneID="nPG-7D-rqp">
@@ -333,17 +421,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wvp-4x-SFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2178" y="-55"/>
-        </scene>
-        <!--AV Player View Controller-->
-        <scene sceneID="r8k-Ik-8dg">
-            <objects>
-                <avPlayerViewController storyboardIdentifier="PlayerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" videoGravity="AVLayerVideoGravityResizeAspectFill" id="Lru-Nu-p2W" customClass="PlayerVC" customModule="YouTube_Clone" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="fgn-cs-t8W"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                </avPlayerViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Y3-Vj-Mm0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1367" y="-55"/>
         </scene>
     </scenes>
     <resources>

@@ -8,12 +8,6 @@
 import UIKit
 import Alamofire
 
-protocol ModelDelegate {
-    func getSearchCompleted(_ search: Search)
-    func getThumbnailsCompleted(_ thumbnails: [String : UIImage])
-    func playListItemsFetched(_ playListItems: PlayListItems)
-}
-
 class Model {
     let API_URL = "https://www.googleapis.com/youtube/v3/"
     let API_KEY = "AIzaSyC8renxi8A86PsIqgh8jtdCBA9EsdgFckU"

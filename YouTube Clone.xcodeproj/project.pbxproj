@@ -23,6 +23,7 @@
 		9D455D122523639B004102A3 /* SearchResultCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D455D112523639B004102A3 /* SearchResultCVC.swift */; };
 		9DBD4113252159FC00E4715A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD4112252159FC00E4715A /* UIViewController.swift */; };
 		9DCB8FF72528DC23001E06C4 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCB8FF62528DC23001E06C4 /* PlayerVC.swift */; };
+		9DCB8FFA252A2384001E06C4 /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCB8FF9252A2384001E06C4 /* ModelDelegate.swift */; };
 		9DD23B0625238629004FD419 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD23B0525238629004FD419 /* Array.swift */; };
 		9DDD3D27251FF1B1006A1659 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D26251FF1B1006A1659 /* MainVC.swift */; };
 		9DDD3D2B2520C071006A1659 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D2A2520C071006A1659 /* SearchVC.swift */; };
@@ -30,7 +31,7 @@
 		9DDD3D3225210797006A1659 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D3125210797006A1659 /* Search.swift */; };
 		9DF050B82521615800049586 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF050B72521615800049586 /* UISearchBar.swift */; };
 		9DF050BB2522055600049586 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF050BA2522055600049586 /* SearchResultVC.swift */; };
-		E78CD5CF4161EA5AA860FAA4 /* Pods_YouTube_Clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEF89AA6F4243AEB509867F /* Pods_YouTube_Clone.framework */; };
+		E78CD5CF4161EA5AA860FAA4 /* Pods_YouTube_Clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEF89AA6F4243AEB509867F /* Pods_YouTube_Clone.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		9D455D112523639B004102A3 /* SearchResultCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCVC.swift; sourceTree = "<group>"; };
 		9DBD4112252159FC00E4715A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		9DCB8FF62528DC23001E06C4 /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
+		9DCB8FF9252A2384001E06C4 /* ModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDelegate.swift; sourceTree = "<group>"; };
 		9DD23B0525238629004FD419 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		9DDD3D26251FF1B1006A1659 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		9DDD3D2A2520C071006A1659 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				9D3E0C76251F729000CF4F23 /* AppDelegate.swift */,
 				9D3E0C78251F729000CF4F23 /* SceneDelegate.swift */,
+				9DCB8FF9252A2384001E06C4 /* ModelDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -209,8 +212,8 @@
 				9D3E0C6F251F729000CF4F23 /* Sources */,
 				9D3E0C70251F729000CF4F23 /* Frameworks */,
 				9D3E0C71251F729000CF4F23 /* Resources */,
-				F0256041D6AA6B53FD1CBD29 /* [CP] Embed Pods Frameworks */,
-				DDBA968B9E9C56C94354A133 /* [CP] Copy Pods Resources */,
+				167621006998682AF89D2CB0 /* [CP] Embed Pods Frameworks */,
+				1EF6F09A601CC03A84533235 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,6 +271,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		167621006998682AF89D2CB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1EF6F09A601CC03A84533235 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		59943EEFCAB5C3697B967B8E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -290,40 +327,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DDBA968B9E9C56C94354A133 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F0256041D6AA6B53FD1CBD29 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YouTube Clone/Pods-YouTube Clone-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -341,6 +344,7 @@
 				9D3E0C91251F736A00CF4F23 /* PlayListItems.swift in Sources */,
 				9DD23B0625238629004FD419 /* Array.swift in Sources */,
 				9DF050B82521615800049586 /* UISearchBar.swift in Sources */,
+				9DCB8FFA252A2384001E06C4 /* ModelDelegate.swift in Sources */,
 				9DF050BB2522055600049586 /* SearchResultVC.swift in Sources */,
 				9D2E1D6925274EE000A12CE1 /* HomeVC.swift in Sources */,
 				9D3E0CA4251FDBC100CF4F23 /* PlayListItemCVC.swift in Sources */,
@@ -499,6 +503,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2R2M3KJN7D;
+				ENABLE_TESTABILITY = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/YouTube Clone/Others/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -519,6 +525,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2R2M3KJN7D;
+				ENABLE_TESTABILITY = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/YouTube Clone/Others/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
