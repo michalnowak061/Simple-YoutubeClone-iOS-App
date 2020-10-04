@@ -30,7 +30,8 @@ class SearchResultVC: UIViewController {
     
     private func viewSetup() {
         func navigationBarSetup() {
-            navigationBar.topItem?.title = barTitle
+            self.navigationItem.title = barTitle
+            //navigationBar.topItem?.title = barTitle
         }
         func collectionViewSetup() {
             let layout = UICollectionViewFlowLayout()
@@ -86,32 +87,6 @@ class SearchResultVC: UIViewController {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        fromleftToRightAnimation()
-    }
-    
-    @IBAction func swipeBackGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
-        let touchPoint = sender.location(in: self.view?.window)
-        let swipeMaxDistance = self.view.frame.size.width
-        let dismissActivationDistance = self.view.frame.size.width * 0.5
-        
-        if sender.state == UIGestureRecognizer.State.began {
-            initialTouchPoint = touchPoint
-        } else if sender.state == UIGestureRecognizer.State.changed {
-            if touchPoint.x - initialTouchPoint.x > 0 && touchPoint.x - initialTouchPoint.x < swipeMaxDistance {
-                self.view.frame = CGRect(x: touchPoint.x - initialTouchPoint.x, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-            }
-        } else if sender.state == UIGestureRecognizer.State.ended || sender.state == UIGestureRecognizer.State.cancelled {
-            if touchPoint.x - initialTouchPoint.x > dismissActivationDistance {
-                fromleftToRightAnimation()
-            } else {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-                })
-            }
-        }
-    }
 }
 
 extension SearchResultVC: ModelDelegate {

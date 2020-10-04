@@ -27,12 +27,20 @@ class SearchVC: UIViewController {
         self.viewSetup()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SearchResultVC {
+            vc.barTitle = self.searchBar.text ?? ""
+            vc.search = self.search!
+        }
+    }
+    
     // MARK: - private methods
     private func viewSetup() {
         self.loadArchivedSearch()
         self.model.delegate = self
         
         self.searchBar.delegate = self
+        self.searchBar.backgroundImage = UIImage()
         self.searchBar.hideSmallClearButton()
         
         self.tableView.delegate = self
@@ -77,10 +85,6 @@ class SearchVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - @IBActions
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        dismiss(animated: false, completion: nil)
-    }
-    
     @IBAction func clearButtonPressed(_ sender: UIButton) {
         searchBar.text = ""
         self.search = nil
@@ -95,7 +99,7 @@ extension SearchVC: ModelDelegate {
         self.search = searchedItems
         viewUpdate()
         if self.state == .searchingCompleted || self.state == .selected || self.state == .archived {
-            presentSearchResultVC(barTitle: self.searchBar.text ?? "", search: self.search!)
+            performSegue(withIdentifier: "presentSearchResultVC", sender: self)
         }
     }
     func playListItemsFetched(_ playListItems: PlayListItems) {}
