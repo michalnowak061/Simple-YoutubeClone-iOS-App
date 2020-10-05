@@ -22,7 +22,8 @@ class PlayerVC: UIViewController {
             
             self.player.delegate = self
             self.player.isUserInteractionEnabled = false
-            self.player.load(withVideoId: self.videoId, playerVars: playvarsDic)
+            //self.player.load(withVideoId: self.videoId, playerVars: playvarsDic)
+            self.player.load(withVideoId: "QnJXreIcSJI", playerVars: playvarsDic)
         }
         setupPlayerView()
     }
@@ -35,12 +36,22 @@ class PlayerVC: UIViewController {
     @IBOutlet weak var actualTimeLabel: UILabel!
     @IBOutlet weak var timeToEndLabel: UILabel!
     @IBOutlet weak var playerSlider: UISlider!
+    @IBOutlet weak var playPauseButton: UIButton!
     
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        self.player.playVideo()
-    }
-    @IBAction func pauseButtonPressed(_ sender: UIButton) {
-        self.player.pauseVideo()
+        self.player.playerState { (YTPlayerState, error) in
+            print(YTPlayerState.rawValue)
+            
+            if YTPlayerState == .playing {
+                self.player.pauseVideo()
+                sender.setImage(UIImage(named: "SF_play"), for: .normal)
+            }
+            else if YTPlayerState == .paused {
+                self.player.playVideo()
+                sender.setImage(UIImage(named: "SF_pause"), for: .normal)
+            }
+        }
+        sender.setImage(UIImage(contentsOfFile: "SF_pause"), for: .normal)
     }
     @IBAction func previousButtonPressed(_ sender: UIButton) {
         self.player.previousVideo()
@@ -53,9 +64,11 @@ class PlayerVC: UIViewController {
 extension PlayerVC: YTPlayerViewDelegate {
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         self.player.playVideo()
+        self.playPauseButton.setImage(UIImage(named: "SF_pause"), for: .normal)
     }
+    
     func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
-        func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
             return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
         }
         
@@ -75,12 +88,12 @@ extension PlayerVC: YTPlayerViewDelegate {
             let seconds = s < 10 ? "0" + String(s) : String(s)
             let minutes = String(m)
             let hours = String(h)
+            
             if h != 0 {
                 self.timeToEndLabel.text = "-" + hours + ":" + minutes + ":" + seconds
             } else {
                 self.timeToEndLabel.text = "-" + minutes + ":" + seconds
             }
-            
             self.playerSlider.value = Float(playTime) / Float(duration)
         }
     }
