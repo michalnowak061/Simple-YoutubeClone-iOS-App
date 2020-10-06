@@ -7,8 +7,10 @@
 
 import UIKit
 
-protocol ModelDelegate {
-    func getSearchCompleted(_ search: Search)
-    func getThumbnailsCompleted(_ thumbnails: [String : UIImage])
-    func playListItemsFetched(_ playListItems: PlayListItems)
+@objc protocol ModelDelegate {
+    @objc optional func getSearchCompleted()
+    @objc optional func getSearchThumbnailsCompleted()
+    @objc optional func playListItemsFetched()
+    @objc optional func getPlaylistsCompleted()
+    @objc optional func getPlaylistsThumbnailsCompleted()
 }

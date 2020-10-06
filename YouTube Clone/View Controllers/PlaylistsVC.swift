@@ -1,25 +1,23 @@
 //
-//  SearchResultVC.swift
+//  PlaylistsVC.swift
 //  YouTube Clone
 //
-//  Created by Michał Nowak on 28/09/2020.
+//  Created by Michał Nowak on 06/10/2020.
 //
 
 import UIKit
 
-class SearchResultVC: UIViewController {
+class PlaylistsVC: UIViewController {
     struct ItemToDisplay {
         let image: UIImage
         let title: String
-        let channelName: String
     }
     
-    var barTitle: String = ""
     var model: Model = Model()
-    var search: Search? = nil
+    var playlists: Playlists? = nil
     var thumbnails: [String : UIImage] = [:]
     var dataToDisplay: [ItemToDisplay] = []
-    var selectedVideoId: String = ""
+    var loadedPages: [String] = []
     let mainQueue = DispatchQueue.main
     let dataQueue = DispatchQueue.init(label: "dataQueue")
     
@@ -28,16 +26,7 @@ class SearchResultVC: UIViewController {
         self.viewSetup()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? PlayerVC {
-            vc.videoId = self.selectedVideoId
-        }
-    }
-    
     private func viewSetup() {
-        func navigationBarSetup() {
-            self.navigationItem.title = barTitle
-        }
         func collectionViewSetup() {
             let layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -49,41 +38,42 @@ class SearchResultVC: UIViewController {
         }
         func dataSetup() {
             self.model.delegate = self
-            self.model.search = self.search
-            self.model.getSearchThumbnails()
+            self.model.getPlaylists()
         }
-        
-        navigationBarSetup()
+    
         collectionViewSetup()
         dataSetup()
     }
-    
+
     private func prepareDataToDisplay() {
-        if let search = self.model.search {
-            for item in search.items {
-                let image = thumbnails[item.snippet.thumbnails.medium.url]
+        if let playlists = self.model.playlists {
+            for item in playlists.items {
+                let id = item.id
+                let image = thumbnails[id]
                 let title = item.snippet.title
-                let channelName = item.snippet.channelTitle
-                let itemToDisplay = ItemToDisplay(image: image!, title: title, channelName: channelName)
+                let itemToDisplay = ItemToDisplay(image: image!, title: title)
                 self.dataToDisplay.append(itemToDisplay)
             }
         }
     }
-    
+
     private func updateView() {
         mainQueue.async {
             self.prepareDataToDisplay()
             self.collectionView.reloadData()
         }
     }
-    
+
     private func downloadNextPage() {
         dataQueue.async {
-            if let search = self.model.search {
-                let nextPageToken = search.nextPageToken
-                var keywords = self.barTitle
-                keywords = keywords.convertedToSlug() ?? ""
-                self.model.getSearch(q: keywords, maxResults: "11", type: "video", pageToken: nextPageToken)
+            if let playlists = self.model.playlists {
+                if let nextPageToken = playlists.nextPageToken {
+                    guard !self.loadedPages.contains(nextPageToken) else {
+                        return
+                    }
+                    self.model.getPlaylists(pageToken: nextPageToken)
+                    self.loadedPages.append(nextPageToken)
+                }
             }
         }
     }
@@ -91,31 +81,30 @@ class SearchResultVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 }
 
-extension SearchResultVC: ModelDelegate {
-    func getSearchThumbnailsCompleted() {
-        self.thumbnails = self.model.searchThumbnails
-        self.updateView()
+extension PlaylistsVC: ModelDelegate {
+    func getPlaylistsCompleted() {
+        self.model.getPlaylistsThumbnails()
     }
-    func getSearchCompleted() {
-        self.model.getSearchThumbnails()
+    func getPlaylistsThumbnailsCompleted() {
+        self.thumbnails = self.model.playlistsThumbnails
+        self.updateView()
     }
 }
 
-extension SearchResultVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension PlaylistsVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataToDisplay.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCVC().id, for: indexPath) as! SearchResultCVC
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaylistsCVC().id, for: indexPath) as! PlaylistsCVC
         
         cell.layer.cornerRadius = 10
         cell.layer.masksToBounds = true
             
         let item = dataToDisplay[indexPath.row]
-        cell.thumbnailImageView.image = item.image
+        cell.image.image = item.image
         cell.titleLabel.text = item.title
-        cell.channelNameLabel.text = item.channelName
         
         return cell
     }
@@ -128,7 +117,7 @@ extension SearchResultVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedVideoId = self.search?.items[indexPath.row].id.videoID ?? ""
-        performSegue(withIdentifier: "presentPlayerVC", sender: self)
+        //self.selectedVideoId = self.search?.items[indexPath.row].id.videoID ?? ""
+        //performSegue(withIdentifier: "presentPlayerVC", sender: self)
     }
 }

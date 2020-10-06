@@ -9,10 +9,47 @@ import UIKit
 import youtube_ios_player_helper
 
 class PlayerVC: UIViewController {
+    enum PlayerVcState {
+        case videoIsLoading
+        case videoIsPlaying
+        case videoIsPaused
+    }
+    var state: PlayerVcState = .videoIsLoading
     var videoId: String = ""
+    var actualTimeSeconds: Int = 0
+    var actualTimeHMS: String {
+        get {
+            let (h, m, s) = secondsToHoursMinutesSeconds(seconds: actualTimeSeconds)
+            let seconds = s < 10 ? "0" + String(s) : String(s)
+            let minutes = String(m)
+            let hours = String(h)
+            if h != 0 {
+                return hours + ":" + minutes + ":" + seconds
+            } else {
+               return minutes + ":" + seconds
+            }
+        }
+    }
+    var timeToEndSeconds: Int = 0
+    var timeToEndHMS: String {
+        get {
+            let (h, m, s) = self.secondsToHoursMinutesSeconds(seconds: timeToEndSeconds)
+            let seconds = s < 10 ? "0" + String(s) : String(s)
+            let minutes = String(m)
+            let hours = String(h)
+            
+            if h != 0 {
+                return "-" + hours + ":" + minutes + ":" + seconds
+            } else {
+                return "-" + minutes + ":" + seconds
+            }
+        }
+    }
+    var playerSliderTimer: Timer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.videoId = "QnJXreIcSJI"
         self.setupView()
     }
     
@@ -22,14 +59,23 @@ class PlayerVC: UIViewController {
             
             self.player.delegate = self
             self.player.isUserInteractionEnabled = false
-            //self.player.load(withVideoId: self.videoId, playerVars: playvarsDic)
-            self.player.load(withVideoId: "QnJXreIcSJI", playerVars: playvarsDic)
+            self.player.load(withVideoId: self.videoId, playerVars: playvarsDic)
+        }
+        func setupPlayerSlider() {
+            self.playerSlider.value = 0
+            self.playerSlider.thumbTintColor = .black
+            self.playerSlider.minimumTrackTintColor = .black
         }
         setupPlayerView()
+        setupPlayerSlider()
     }
     
     private func updateView() {
         
+    }
+    
+    private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
     @IBOutlet weak var player: YTPlayerView!
@@ -38,24 +84,45 @@ class PlayerVC: UIViewController {
     @IBOutlet weak var playerSlider: UISlider!
     @IBOutlet weak var playPauseButton: UIButton!
     
+    @IBAction func playerSliderValueChanged(_ sender: UISlider) {
+        self.player.duration { (duration, error) in
+            guard duration != 0 else {
+                self.playerSliderTimer?.invalidate()
+                return
+            }
+            self.state = .videoIsLoading
+            self.playerSliderTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { timer in
+                let setTime: Float = Float(duration) * sender.value
+                self.player.seek(toSeconds: setTime, allowSeekAhead: true)
+                self.state = .videoIsPlaying
+            }
+            self.actualTimeSeconds = Int(Float(duration) * sender.value)
+            self.actualTimeLabel.text = self.actualTimeHMS
+            
+            self.timeToEndSeconds = Int(duration) - self.actualTimeSeconds
+            self.timeToEndLabel.text = self.timeToEndHMS
+        }
+    }
+    
     @IBAction func playButtonPressed(_ sender: UIButton) {
         self.player.playerState { (YTPlayerState, error) in
-            print(YTPlayerState.rawValue)
-            
             if YTPlayerState == .playing {
                 self.player.pauseVideo()
+                self.state = .videoIsPaused
                 sender.setImage(UIImage(named: "SF_play"), for: .normal)
             }
             else if YTPlayerState == .paused {
                 self.player.playVideo()
+                self.state = .videoIsPlaying
                 sender.setImage(UIImage(named: "SF_pause"), for: .normal)
             }
         }
-        sender.setImage(UIImage(contentsOfFile: "SF_pause"), for: .normal)
     }
+    
     @IBAction func previousButtonPressed(_ sender: UIButton) {
         self.player.previousVideo()
     }
+    
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         self.player.nextVideo()
     }
@@ -64,37 +131,20 @@ class PlayerVC: UIViewController {
 extension PlayerVC: YTPlayerViewDelegate {
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         self.player.playVideo()
+        self.state = .videoIsPlaying
         self.playPauseButton.setImage(UIImage(named: "SF_pause"), for: .normal)
     }
     
     func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
-        func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
-            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-        }
-        
-        let (h, m, s) = secondsToHoursMinutesSeconds(seconds: Int(playTime))
-        let seconds = s < 10 ? "0" + String(s) : String(s)
-        let minutes = String(m)
-        let hours = String(h)
-        if h != 0 {
-            self.actualTimeLabel.text = hours + ":" + minutes + ":" + seconds
-        } else {
-            self.actualTimeLabel.text = minutes + ":" + seconds
-        }
-        
-        self.player.duration { (duration, error) in
-            let timeToEnd: Int = Int(duration) - Int(playTime)
-            let (h, m, s) = secondsToHoursMinutesSeconds(seconds: timeToEnd)
-            let seconds = s < 10 ? "0" + String(s) : String(s)
-            let minutes = String(m)
-            let hours = String(h)
+        if self.state != .videoIsLoading {
+            self.actualTimeSeconds = Int(playTime)
+            self.actualTimeLabel.text = self.actualTimeHMS
             
-            if h != 0 {
-                self.timeToEndLabel.text = "-" + hours + ":" + minutes + ":" + seconds
-            } else {
-                self.timeToEndLabel.text = "-" + minutes + ":" + seconds
+            self.player.duration { (duration, error) in
+                self.timeToEndSeconds = Int(duration) - Int(playTime)
+                self.timeToEndLabel.text = self.timeToEndHMS
+                self.playerSlider.value = Float(playTime) / Float(duration)
             }
-            self.playerSlider.value = Float(playTime) / Float(duration)
         }
     }
 }

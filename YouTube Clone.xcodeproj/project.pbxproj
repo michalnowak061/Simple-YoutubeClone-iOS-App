@@ -25,6 +25,9 @@
 		9DCB8FF72528DC23001E06C4 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCB8FF62528DC23001E06C4 /* PlayerVC.swift */; };
 		9DCB8FFA252A2384001E06C4 /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCB8FF9252A2384001E06C4 /* ModelDelegate.swift */; };
 		9DD23B0625238629004FD419 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD23B0525238629004FD419 /* Array.swift */; };
+		9DD4031A252C658E006D25D1 /* Playlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD40319252C658E006D25D1 /* Playlists.swift */; };
+		9DD4031E252C6B1B006D25D1 /* PlaylistsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4031D252C6B1B006D25D1 /* PlaylistsVC.swift */; };
+		9DD40321252C82B5006D25D1 /* PlaylistsCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD40320252C82B5006D25D1 /* PlaylistsCVC.swift */; };
 		9DDD3D27251FF1B1006A1659 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D26251FF1B1006A1659 /* MainVC.swift */; };
 		9DDD3D2B2520C071006A1659 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D2A2520C071006A1659 /* SearchVC.swift */; };
 		9DDD3D2E2520C4F6006A1659 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD3D2D2520C4F6006A1659 /* SearchTVC.swift */; };
@@ -57,6 +60,9 @@
 		9DCB8FF62528DC23001E06C4 /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		9DCB8FF9252A2384001E06C4 /* ModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDelegate.swift; sourceTree = "<group>"; };
 		9DD23B0525238629004FD419 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		9DD40319252C658E006D25D1 /* Playlists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlists.swift; sourceTree = "<group>"; };
+		9DD4031D252C6B1B006D25D1 /* PlaylistsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsVC.swift; sourceTree = "<group>"; };
+		9DD40320252C82B5006D25D1 /* PlaylistsCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsCVC.swift; sourceTree = "<group>"; };
 		9DDD3D26251FF1B1006A1659 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		9DDD3D2A2520C071006A1659 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		9DDD3D2D2520C4F6006A1659 /* SearchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVC.swift; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 				9DDD3D2A2520C071006A1659 /* SearchVC.swift */,
 				9DF050BA2522055600049586 /* SearchResultVC.swift */,
 				9DCB8FF62528DC23001E06C4 /* PlayerVC.swift */,
+				9DD4031D252C6B1B006D25D1 /* PlaylistsVC.swift */,
 				9D3E0C7A251F729000CF4F23 /* PlayListItemsVC.swift */,
 			);
 			path = "View Controllers";
@@ -146,6 +153,7 @@
 				9D2E1D8425276E1700A12CE1 /* GoogleUser.swift */,
 				9D3E0C94251F770B00CF4F23 /* Model.swift */,
 				9DDD3D3125210797006A1659 /* Search.swift */,
+				9DD40319252C658E006D25D1 /* Playlists.swift */,
 				9D3E0C90251F736A00CF4F23 /* PlayListItems.swift */,
 			);
 			path = Model;
@@ -186,6 +194,7 @@
 				9D3E0CA3251FDBC100CF4F23 /* PlayListItemCVC.swift */,
 				9DDD3D2D2520C4F6006A1659 /* SearchTVC.swift */,
 				9D455D112523639B004102A3 /* SearchResultCVC.swift */,
+				9DD40320252C82B5006D25D1 /* PlaylistsCVC.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -334,12 +343,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD40321252C82B5006D25D1 /* PlaylistsCVC.swift in Sources */,
 				9DDD3D2B2520C071006A1659 /* SearchVC.swift in Sources */,
 				9D455D122523639B004102A3 /* SearchResultCVC.swift in Sources */,
 				9D3E0C95251F770B00CF4F23 /* Model.swift in Sources */,
 				9D2E1D8525276E1700A12CE1 /* GoogleUser.swift in Sources */,
 				9D3E0C7B251F729000CF4F23 /* PlayListItemsVC.swift in Sources */,
 				9DBD4113252159FC00E4715A /* UIViewController.swift in Sources */,
+				9DD4031E252C6B1B006D25D1 /* PlaylistsVC.swift in Sources */,
 				9DCB8FF72528DC23001E06C4 /* PlayerVC.swift in Sources */,
 				9D3E0C91251F736A00CF4F23 /* PlayListItems.swift in Sources */,
 				9DD23B0625238629004FD419 /* Array.swift in Sources */,
@@ -351,6 +362,7 @@
 				9D2E1DAD2527CF5400A12CE1 /* String.swift in Sources */,
 				9DDD3D3225210797006A1659 /* Search.swift in Sources */,
 				9D3E0C77251F729000CF4F23 /* AppDelegate.swift in Sources */,
+				9DD4031A252C658E006D25D1 /* Playlists.swift in Sources */,
 				9D3E0C79251F729000CF4F23 /* SceneDelegate.swift in Sources */,
 				9DDD3D2E2520C4F6006A1659 /* SearchTVC.swift in Sources */,
 				9DDD3D27251FF1B1006A1659 /* MainVC.swift in Sources */,

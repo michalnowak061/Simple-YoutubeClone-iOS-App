@@ -94,15 +94,15 @@ class SearchVC: UIViewController {
 }
 // MARK: - SearchVC extensions
 extension SearchVC: ModelDelegate {
-    func getThumbnailsCompleted(_ thumbnails: [String : UIImage]) {}
-    func getSearchCompleted(_ searchedItems: Search) {
-        self.search = searchedItems
-        viewUpdate()
-        if self.state == .searchingCompleted || self.state == .selected || self.state == .archived {
-            performSegue(withIdentifier: "presentSearchResultVC", sender: self)
+    func getSearchCompleted() {
+        if let searchedItems = self.model.search {
+            self.search = searchedItems
+            viewUpdate()
+            if self.state == .searchingCompleted || self.state == .selected || self.state == .archived {
+                performSegue(withIdentifier: "presentSearchResultVC", sender: self)
+            }
         }
     }
-    func playListItemsFetched(_ playListItems: PlayListItems) {}
 }
 
 extension SearchVC: UISearchBarDelegate {
