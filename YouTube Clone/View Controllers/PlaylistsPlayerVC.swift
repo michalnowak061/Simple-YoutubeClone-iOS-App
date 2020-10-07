@@ -1,21 +1,21 @@
 //
-//  PlayerVC.swift
+//  PlaylistsPlayerVC.swift
 //  YouTube Clone
 //
-//  Created by Michał Nowak on 03/10/2020.
+//  Created by Michał Nowak on 07/10/2020.
 //
 
 import UIKit
 import youtube_ios_player_helper
 
-class PlayerVC: UIViewController {
-    enum PlayerVcState {
+class PlaylistsPlayerVC: UIViewController {
+    enum PlaylistsPlayerVCState {
         case videoIsLoading
         case videoIsPlaying
         case videoIsPaused
     }
-    var state: PlayerVcState = .videoIsLoading
-    var videoId: String = ""
+    var state: PlaylistsPlayerVCState = .videoIsLoading
+    var playlistId: String = ""
     var actualTimeSeconds: Int = 0
     var actualTimeHMS: String {
         get {
@@ -49,7 +49,6 @@ class PlayerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.videoId = "QnJXreIcSJI"
         self.setupView()
     }
     
@@ -59,7 +58,8 @@ class PlayerVC: UIViewController {
             
             self.player.delegate = self
             self.player.isUserInteractionEnabled = false
-            self.player.load(withVideoId: self.videoId, playerVars: playvarsDic)
+            print(self.playlistId)
+            self.player.load(withPlaylistId: self.playlistId, playerVars: playvarsDic)
         }
         func setupPlayerSlider() {
             self.playerSlider.value = 0
@@ -128,7 +128,7 @@ class PlayerVC: UIViewController {
     }
 }
 
-extension PlayerVC: YTPlayerViewDelegate {
+extension PlaylistsPlayerVC: YTPlayerViewDelegate {
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         self.player.playVideo()
         self.state = .videoIsPlaying

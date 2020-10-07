@@ -192,6 +192,23 @@
             <point key="canvasLocation" x="-4071.1999999999998" y="364.7676161919041"/>
         </scene>
         <!--Playlists-->
+        <scene sceneID="hKR-ky-Wza">
+            <objects>
+                <navigationController id="Wjq-Bf-vcn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Playlists" image="list.dash" catalog="system" id="T1o-VK-mOp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KUL-Xw-ggV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Rgf-Q1-rPn" kind="relationship" relationship="rootViewController" id="b4u-4b-MLt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FgQ-mv-1WE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2178" y="887"/>
+        </scene>
+        <!--Playlists-->
         <scene sceneID="fVW-So-sLg">
             <objects>
                 <viewController storyboardIdentifier="PlaylistsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rgf-Q1-rPn" customClass="PlaylistsVC" customModule="YouTube_Clone" customModuleProvider="target" sceneMemberID="viewController">
@@ -200,36 +217,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nBO-Nj-WdR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7YF-DG-joU">
-                                    <size key="itemSize" width="375" height="105"/>
+                                    <size key="itemSize" width="375" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaylistsCVC" id="8pr-Zm-uRD" customClass="PlaylistsCVC" customModule="YouTube_Clone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="azH-Wk-y3S">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cf9-1h-kXY">
-                                                    <rect key="frame" x="8" y="8" width="120" height="90"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQi-eu-Oim">
-                                                    <rect key="frame" x="136" y="8" width="231" height="90"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQi-eu-Oim">
+                                                    <rect key="frame" x="76" y="8" width="291" height="45"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cf9-1h-kXY">
+                                                    <rect key="frame" x="8" y="8" width="60" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Q5A-eg-dwS"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Cf9-1h-kXY" firstAttribute="top" secondItem="azH-Wk-y3S" secondAttribute="topMargin" id="Wzx-hN-gdw"/>
+                                                <constraint firstItem="Cf9-1h-kXY" firstAttribute="top" secondItem="bQi-eu-Oim" secondAttribute="top" id="hzD-Jh-bSE"/>
+                                                <constraint firstItem="Cf9-1h-kXY" firstAttribute="centerY" secondItem="azH-Wk-y3S" secondAttribute="centerY" id="k5E-mz-Ddd"/>
+                                                <constraint firstItem="bQi-eu-Oim" firstAttribute="leading" secondItem="Cf9-1h-kXY" secondAttribute="trailing" constant="8" id="nRo-y5-fii"/>
+                                                <constraint firstItem="bQi-eu-Oim" firstAttribute="trailing" secondItem="azH-Wk-y3S" secondAttribute="trailingMargin" id="njv-3Z-c1W"/>
+                                                <constraint firstItem="Cf9-1h-kXY" firstAttribute="bottom" secondItem="bQi-eu-Oim" secondAttribute="bottom" id="p39-Fo-a7n"/>
+                                                <constraint firstItem="Cf9-1h-kXY" firstAttribute="leading" secondItem="azH-Wk-y3S" secondAttribute="leadingMargin" id="tKw-48-f3M"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="375" height="105"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <size key="customSize" width="375" height="60"/>
                                         <connections>
                                             <outlet property="image" destination="Cf9-1h-kXY" id="SyJ-BQ-Cdk"/>
                                             <outlet property="titleLabel" destination="bQi-eu-Oim" id="rLn-a6-9tU"/>
@@ -241,20 +269,30 @@
                         <viewLayoutGuide key="safeArea" id="V0o-Me-p42"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="bottom" secondItem="V0o-Me-p42" secondAttribute="bottom" id="2uO-qj-MYO"/>
-                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="top" secondItem="V0o-Me-p42" secondAttribute="top" id="8EN-e6-d90"/>
-                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="centerX" secondItem="Lyq-mT-B5G" secondAttribute="centerX" id="bnz-Q3-04Q"/>
-                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="leading" secondItem="V0o-Me-p42" secondAttribute="leading" id="ylp-wi-ywR"/>
+                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="bottom" secondItem="V0o-Me-p42" secondAttribute="bottom" id="3jZ-bE-Qeg"/>
+                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="top" secondItem="V0o-Me-p42" secondAttribute="top" id="70H-lu-qOx"/>
+                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="leading" secondItem="V0o-Me-p42" secondAttribute="leading" id="pax-jF-NdT"/>
+                            <constraint firstItem="nBO-Nj-WdR" firstAttribute="centerX" secondItem="Lyq-mT-B5G" secondAttribute="centerX" id="sbo-uH-xrL"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Playlists" selectedImage="list.dash" catalog="system" id="SF9-oc-DWF"/>
+                    <navigationItem key="navigationItem" title="Playlists" id="3lS-8K-tnO">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="4Va-vh-kt7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="bD8-w0-Sxc">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="nBO-Nj-WdR" id="GuT-rg-c14"/>
+                        <segue destination="w25-5b-be7" kind="show" identifier="presentPlaylistsPlayerVC" id="fzD-Ar-0Vc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gq8-Ud-pzn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2178.4000000000001" y="769.56521739130437"/>
+            <point key="canvasLocation" x="-1303" y="887"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WJp-C2-Rmg">
@@ -268,12 +306,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="BOW-5Z-Zkl" kind="relationship" relationship="viewControllers" id="c9f-LL-H3X"/>
-                        <segue destination="Rgf-Q1-rPn" kind="relationship" relationship="viewControllers" id="eZw-lm-vRe"/>
+                        <segue destination="Wjq-Bf-vcn" kind="relationship" relationship="viewControllers" id="5oo-fH-0u6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVs-dG-yrY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3201" y="365"/>
+            <point key="canvasLocation" x="-3194" y="365"/>
         </scene>
         <!--Search ResultVC-->
         <scene sceneID="ltQ-fp-3PC">
@@ -374,38 +412,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N5z-ES-mnM">
-                                <rect key="frame" x="166" y="341" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <state key="normal" image="SF_play">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                </state>
-                                <connections>
-                                    <action selector="playButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="uUa-JW-jR2"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="YTPlayerView" translatesAutoresizingMaskIntoConstraints="NO" id="T2c-qA-feC" customClass="YTPlayerView">
                                 <rect key="frame" x="0.0" y="44" width="375" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUV-Ex-F77">
-                                <rect key="frame" x="114" y="340" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" image="SF_backward_end_fill">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                </state>
-                                <connections>
-                                    <action selector="previousButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="f1p-9E-MYZ"/>
-                                </connections>
-                            </button>
                             <slider opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eNW-d0-Sk2">
                                 <rect key="frame" x="67" y="254" width="236" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="playerSliderValueChanged:" destination="aso-jF-PTz" eventType="valueChanged" id="Woe-UE-km8"/>
+                                    <action selector="playerSliderValueChanged:" destination="aso-jF-PTz" eventType="valueChanged" id="BgH-1C-Fki"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxS-FR-iVM">
@@ -422,15 +438,51 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afq-a7-6oA">
+                                <rect key="frame" x="16" y="291" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Channel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ab5-zE-XCU">
+                                <rect key="frame" x="16" y="320" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N5z-ES-mnM">
+                                <rect key="frame" x="165" y="445" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" image="SF_play">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="d7b-hK-opS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUV-Ex-F77">
+                                <rect key="frame" x="113" y="444" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" image="SF_backward_end_fill">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="previousButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="lPd-tJ-DsU"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xuB-iL-2cN">
-                                <rect key="frame" x="218" y="340" width="44" height="44"/>
+                                <rect key="frame" x="217" y="444" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" image="SF_forward_end_fill">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </state>
                                 <connections>
-                                    <action selector="nextButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="ikE-Kb-40a"/>
+                                    <action selector="nextButtonPressed:" destination="aso-jF-PTz" eventType="touchUpInside" id="iog-8D-a0r"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -439,11 +491,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="8r5-wA-3fh"/>
                     <connections>
-                        <outlet property="actualTimeLabel" destination="GxS-FR-iVM" id="TLn-RN-Ad0"/>
-                        <outlet property="playPauseButton" destination="N5z-ES-mnM" id="CRq-dO-l10"/>
-                        <outlet property="player" destination="T2c-qA-feC" id="0by-ZI-aND"/>
-                        <outlet property="playerSlider" destination="eNW-d0-Sk2" id="23h-lc-fCk"/>
-                        <outlet property="timeToEndLabel" destination="fsy-XJ-5wB" id="1yf-LF-goJ"/>
+                        <outlet property="actualTimeLabel" destination="GxS-FR-iVM" id="DDb-i7-QJI"/>
+                        <outlet property="playPauseButton" destination="N5z-ES-mnM" id="K8p-dV-Quv"/>
+                        <outlet property="player" destination="T2c-qA-feC" id="bbT-qO-h8d"/>
+                        <outlet property="playerSlider" destination="eNW-d0-Sk2" id="vD4-Dw-rpU"/>
+                        <outlet property="timeToEndLabel" destination="fsy-XJ-5wB" id="wIj-Zp-Tuz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqD-ou-umm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -466,6 +518,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wvp-4x-SFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2178" y="-55"/>
+        </scene>
+        <!--Playlists PlayerVC-->
+        <scene sceneID="lvZ-oI-AA5">
+            <objects>
+                <viewController storyboardIdentifier="PlaylistsPlayerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w25-5b-be7" customClass="PlaylistsPlayerVC" customModule="YouTube_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CGU-kF-XMl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYc-6K-5IY">
+                                <rect key="frame" x="166" y="341" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" image="SF_play">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="w25-5b-be7" eventType="touchUpInside" id="8oM-gn-KNd"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="YTPlayerView" translatesAutoresizingMaskIntoConstraints="NO" id="QZc-7E-QBX" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVC-y3-dq1">
+                                <rect key="frame" x="114" y="340" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" image="SF_backward_end_fill">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="previousButtonPressed:" destination="w25-5b-be7" eventType="touchUpInside" id="niD-8s-Yv9"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hAw-Fi-g7J">
+                                <rect key="frame" x="67" y="254" width="236" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="playerSliderValueChanged:" destination="w25-5b-be7" eventType="valueChanged" id="1oN-aM-B6F"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCk-Yw-7CA">
+                                <rect key="frame" x="16" y="262" width="45" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhs-jW-EoR">
+                                <rect key="frame" x="309" y="262" width="50" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fVD-jf-6KN">
+                                <rect key="frame" x="218" y="340" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" image="SF_forward_end_fill">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="w25-5b-be7" eventType="touchUpInside" id="QBv-oV-Xve"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gBd-Kt-mto"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nzK-BR-xWg"/>
+                    <connections>
+                        <outlet property="actualTimeLabel" destination="uCk-Yw-7CA" id="08C-lI-4wY"/>
+                        <outlet property="playPauseButton" destination="LYc-6K-5IY" id="i4e-LJ-xS6"/>
+                        <outlet property="player" destination="QZc-7E-QBX" id="UEW-KW-DJe"/>
+                        <outlet property="playerSlider" destination="hAw-Fi-g7J" id="E3o-e7-xkk"/>
+                        <outlet property="timeToEndLabel" destination="Xhs-jW-EoR" id="Crf-sL-ZK1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mBy-Z6-Aa4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-423" y="887"/>
         </scene>
     </scenes>
     <resources>

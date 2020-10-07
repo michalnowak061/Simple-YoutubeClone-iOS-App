@@ -9,6 +9,7 @@ import UIKit
 
 class SearchResultVC: UIViewController {
     struct ItemToDisplay {
+        let id: String
         let image: UIImage
         let title: String
         let channelName: String
@@ -61,10 +62,11 @@ class SearchResultVC: UIViewController {
     private func prepareDataToDisplay() {
         if let search = self.model.search {
             for item in search.items {
-                let image = thumbnails[item.snippet.thumbnails.medium.url]
+                let id = item.id.videoID ?? ""
+                let image = thumbnails[id]
                 let title = item.snippet.title
                 let channelName = item.snippet.channelTitle
-                let itemToDisplay = ItemToDisplay(image: image!, title: title, channelName: channelName)
+                let itemToDisplay = ItemToDisplay(id: id, image: image!, title: title, channelName: channelName)
                 self.dataToDisplay.append(itemToDisplay)
             }
         }
@@ -128,7 +130,7 @@ extension SearchResultVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedVideoId = self.search?.items[indexPath.row].id.videoID ?? ""
+        self.selectedVideoId = self.dataToDisplay[indexPath.row].id
         performSegue(withIdentifier: "presentPlayerVC", sender: self)
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class PlaylistsVC: UIViewController {
     struct ItemToDisplay {
+        let id: String
         let image: UIImage
         let title: String
     }
@@ -18,6 +19,7 @@ class PlaylistsVC: UIViewController {
     var thumbnails: [String : UIImage] = [:]
     var dataToDisplay: [ItemToDisplay] = []
     var loadedPages: [String] = []
+    var selectedPlaylistId: String = ""
     let mainQueue = DispatchQueue.main
     let dataQueue = DispatchQueue.init(label: "dataQueue")
     
@@ -26,11 +28,17 @@ class PlaylistsVC: UIViewController {
         self.viewSetup()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PlaylistsPlayerVC {
+            vc.playlistId = self.selectedPlaylistId
+        }
+    }
+    
     private func viewSetup() {
         func collectionViewSetup() {
             let layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-            layout.itemSize = CGSize(width: self.view.frame.width * 0.9, height: self.view.frame.height * 0.15)
+            layout.itemSize = CGSize(width: self.view.frame.width * 0.9, height: self.view.frame.height * 0.08)
             
             self.collectionView.collectionViewLayout = layout
             self.collectionView.delegate = self
@@ -51,7 +59,7 @@ class PlaylistsVC: UIViewController {
                 let id = item.id
                 let image = thumbnails[id]
                 let title = item.snippet.title
-                let itemToDisplay = ItemToDisplay(image: image!, title: title)
+                let itemToDisplay = ItemToDisplay(id: id, image: image!, title: title)
                 self.dataToDisplay.append(itemToDisplay)
             }
         }
@@ -117,7 +125,7 @@ extension PlaylistsVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //self.selectedVideoId = self.search?.items[indexPath.row].id.videoID ?? ""
-        //performSegue(withIdentifier: "presentPlayerVC", sender: self)
+        self.selectedPlaylistId = self.dataToDisplay[indexPath.row].id
+        performSegue(withIdentifier: "presentPlaylistsPlayerVC", sender: self)
     }
 }

@@ -31,7 +31,8 @@ class Model {
                     return
                 }
                 if let image = UIImage(data: response.data!, scale: 1) {
-                    searchThumbnails[url] = image
+                    let id = item.id.videoID ?? ""
+                    searchThumbnails[id] = image
                     if searchThumbnails.count == search!.items.count {
                         self.delegate?.getSearchThumbnailsCompleted!()
                     }
